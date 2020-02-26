@@ -29,6 +29,7 @@ import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
+import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataPetRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,14 +49,20 @@ public class ClinicService {
 	private OwnerRepository ownerRepository;
 
 	private VisitRepository visitRepository;
+	
+	private SpringDataPetRepository dataPetRepository;
+	
+
 
 	@Autowired
 	public ClinicService(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository,
-			VisitRepository visitRepository) {
+			VisitRepository visitRepository,SpringDataPetRepository dataPetRepository) {
 		this.petRepository = petRepository;
 		this.vetRepository = vetRepository;
 		this.ownerRepository = ownerRepository;
 		this.visitRepository = visitRepository;
+		this.dataPetRepository = dataPetRepository;
+	
 	}
 
 	@Transactional(readOnly = true)
@@ -91,6 +98,11 @@ public class ClinicService {
 	@Transactional
 	public void savePet(Pet pet) throws DataAccessException {
 		petRepository.save(pet);
+	}
+	@Transactional
+	public void removePet(Pet pet) throws DataAccessException{
+		dataPetRepository.delete(pet.getId());
+		
 	}
 
 	@Transactional(readOnly = true)

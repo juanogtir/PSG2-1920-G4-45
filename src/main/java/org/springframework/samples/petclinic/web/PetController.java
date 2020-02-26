@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Juergen Hoeller
@@ -112,5 +113,15 @@ public class PetController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
+	@GetMapping(value = "/pets/{petId}/remove")
+	public String processDeleteForm(@PathVariable("petId") int petId,@PathVariable int ownerId, ModelMap model) {
+		Pet pet = this.clinicService.findPetById(petId);
+		Owner owner = this.clinicService.findOwnerById(ownerId);
+		owner.removePet(pet);
+		this.clinicService.removePet(pet);
+		return "redirect:/owners/{ownerId}";
+	}
+	
+	
 
 }

@@ -86,6 +86,14 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}">Añadir visita</a>
                             </td>
+                            
+                              <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/remove" var="removeUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(removeUrl)}">Eliminar Mascota</a>
+                            </td>
                         </tr>
                     </table>
                 </td>
