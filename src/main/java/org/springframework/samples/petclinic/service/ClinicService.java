@@ -17,6 +17,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,11 +28,13 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.PetHotel;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
+import org.springframework.samples.petclinic.repository.PetHotelRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.SpecialtyRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
@@ -57,21 +60,23 @@ public class ClinicService {
 
 	private OwnerRepository			ownerRepository;
 
-	private VisitRepository			visitRepository;
-
-	private SpringDataPetRepository	dataPetRepository;
+	private VisitRepository visitRepository;
+	
+	private SpringDataPetRepository dataPetRepository;
+	
+	private PetHotelRepository petHotelRepository;
 
 
 	@Autowired
 	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final SpecialtyRepository specialtyRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository,
-		final SpringDataPetRepository dataPetRepository) {
+		final SpringDataPetRepository dataPetRepository, PetHotelRepository petHotelRepository) {
 		this.petRepository = petRepository;
 		this.vetRepository = vetRepository;
 		this.specialtyRepository = specialtyRepository;
 		this.ownerRepository = ownerRepository;
 		this.visitRepository = visitRepository;
 		this.dataPetRepository = dataPetRepository;
-
+		this.petHotelRepository = petHotelRepository;
 	}
 
 	@Transactional(readOnly = true)
@@ -176,5 +181,20 @@ public class ClinicService {
 	public Collection<Visit> findVisitsByPetId(final int petId) {
 		return this.visitRepository.findByPetId(petId);
 	}
-
+	
+	
+	@Transactional
+	public PetHotel findPetHotelById(int id) throws DataAccessException {
+		return petHotelRepository.findPetHotelById(id);
+	}
+	
+	@Transactional
+	public void savePetHotel(PetHotel pethotel) throws DataAccessException {
+		petHotelRepository.save(pethotel);
+	}
+	
+	@Transactional
+	public List<PetHotel> findPetHotelsByPetId(int id) throws DataAccessException {
+		return petHotelRepository.findPetHotelsByPetId(id);
+	}
 }
