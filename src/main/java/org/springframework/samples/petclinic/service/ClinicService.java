@@ -16,16 +16,19 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.PetHotel;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
+import org.springframework.samples.petclinic.repository.PetHotelRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
@@ -52,16 +55,18 @@ public class ClinicService {
 	
 	private SpringDataPetRepository dataPetRepository;
 	
+	private PetHotelRepository petHotelRepository;
 
 
 	@Autowired
 	public ClinicService(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository,
-			VisitRepository visitRepository,SpringDataPetRepository dataPetRepository) {
+			VisitRepository visitRepository,SpringDataPetRepository dataPetRepository, PetHotelRepository petHotelRepository) {
 		this.petRepository = petRepository;
 		this.vetRepository = vetRepository;
 		this.ownerRepository = ownerRepository;
 		this.visitRepository = visitRepository;
 		this.dataPetRepository = dataPetRepository;
+		this.petHotelRepository = petHotelRepository;
 	
 	}
 
@@ -114,5 +119,20 @@ public class ClinicService {
 	public Collection<Visit> findVisitsByPetId(int petId) {
 		return visitRepository.findByPetId(petId);
 	}
-
+	
+	
+	@Transactional
+	public PetHotel findPetHotelById(int id) throws DataAccessException {
+		return petHotelRepository.findPetHotelById(id);
+	}
+	
+	@Transactional
+	public void savePetHotel(PetHotel pethotel) throws DataAccessException {
+		petHotelRepository.save(pethotel);
+	}
+	
+	@Transactional
+	public List<PetHotel> findPetHotelsByPetId(int id) throws DataAccessException {
+		return petHotelRepository.findPetHotelsByPetId(id);
+	}
 }
