@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -30,6 +31,7 @@ import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataPetRepository;
+import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVisitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,8 +54,7 @@ public class ClinicService {
 	
 	private SpringDataPetRepository dataPetRepository;
 	
-
-
+	private SpringDataVisitRepository dataVisitRepository;
 	@Autowired
 	public ClinicService(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository,
 			VisitRepository visitRepository,SpringDataPetRepository dataPetRepository) {
@@ -67,7 +68,7 @@ public class ClinicService {
 
 	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
-		return petRepository.findPetTypes();
+		return dataPetRepository.findPetTypes();
 	}
 
 	@Transactional(readOnly = true)
@@ -101,7 +102,7 @@ public class ClinicService {
 	}
 	@Transactional
 	public void removePet(Pet pet) throws DataAccessException{
-		dataPetRepository.delete(pet.getId());
+		petRepository.delete(pet.getId());
 		
 	}
 
@@ -115,4 +116,9 @@ public class ClinicService {
 		return visitRepository.findByPetId(petId);
 	}
 
+
+	@Transactional(readOnly = true)
+	public Visit findVisitById(int id) throws DataAccessException {
+		return visitRepository.findById(id).get();
+	}
 }
