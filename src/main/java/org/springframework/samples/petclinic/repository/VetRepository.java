@@ -36,7 +36,7 @@ import org.springframework.samples.petclinic.model.Vet;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface VetRepository extends CrudRepository<Vet, Integer>{
+public interface VetRepository {
 
 	/**
 	 * Retrieve all <code>Vet</code>s from the data store.
@@ -64,6 +64,8 @@ public interface VetRepository extends CrudRepository<Vet, Integer>{
 	 * @see BaseEntity#isNew
 	 */
 	void save(Vet vet) throws DataAccessException;
+	
+	void delete(int vetId);
 
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
 

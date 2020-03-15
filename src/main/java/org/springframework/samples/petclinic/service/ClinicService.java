@@ -42,6 +42,7 @@ import org.springframework.samples.petclinic.repository.SpecialtyRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataPetRepository;
+import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVetRepository;
 import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVisitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,6 +67,7 @@ public class ClinicService {
 	private VisitRepository visitRepository;
 	
 	private SpringDataPetRepository dataPetRepository;
+	
 	
 	private SpringDataVisitRepository dataVisitRepository;
   
@@ -121,7 +123,6 @@ public class ClinicService {
 	@Transactional
 	public void removePet(final Pet pet) throws DataAccessException {
 		this.dataPetRepository.delete(pet.getId());
-
 	}
 
 	@Transactional(readOnly = true)
@@ -138,11 +139,7 @@ public class ClinicService {
 	public void saveVet(final Vet vet) throws DataAccessException {
 		this.vetRepository.save(vet);
 	}
-
-	@Transactional
-	public void removePet(Pet pet) throws DataAccessException{
-		petRepository.delete(pet.getId());
-		
+	
 
 	public void saveSpecialty(@Valid final Specialty specialty) {
 		this.specialtyRepository.save(specialty);
