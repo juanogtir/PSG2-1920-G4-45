@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +32,10 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
+import org.springframework.samples.petclinic.repository.SpecialtyRepository;
+import org.springframework.samples.petclinic.service.ClinicService;
+
+import lombok.Data;
 
 /**
  * Simple JavaBean domain object representing a veterinarian.
@@ -47,32 +52,60 @@ public class Vet extends Person {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"),
 			inverseJoinColumns = @JoinColumn(name = "specialty_id"))
-	private Set<Specialty> specialties;
+	private List<Specialty> specialties;
 
-	protected Set<Specialty> getSpecialtiesInternal() {
+	protected List<Specialty> getSpecialtiesInternal() {
 		if (this.specialties == null) {
-			this.specialties = new HashSet<>();
+			this.specialties = new ArrayList<>();
 		}
 		return this.specialties;
 	}
 
-	protected void setSpecialtiesInternal(Set<Specialty> specialties) {
+	protected void setSpecialtiesInternal(final List<Specialty> specialties) {
 		this.specialties = specialties;
 	}
 
 	@XmlElement
 	public List<Specialty> getSpecialties() {
-		List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());
+		List<Specialty> sortedSpecs = new ArrayList<>(this.getSpecialtiesInternal());
 		PropertyComparator.sort(sortedSpecs, new MutableSortDefinition("name", true, true));
 		return Collections.unmodifiableList(sortedSpecs);
 	}
 
 	public int getNrOfSpecialties() {
-		return getSpecialtiesInternal().size();
+		return this.getSpecialtiesInternal().size();
 	}
 
 	public void addSpecialty(Specialty specialty) {
-		getSpecialtiesInternal().add(specialty);
+		this.getSpecialtiesInternal().add(specialty);
+	}
+	
+	public void addSpecialties(List<Specialty> specialties) {
+//		for(Specialty s : specialties) {
+//			this.getSpecialtiesInternal().add(s);
+//		}
+		this.setSpecialtiesInternal(specialties);
+	}
+	
+//	public void addSpecialties(String[] specialtiesNamesArray) {
+//		for(String s : specialtiesNamesArray) {
+//			SpecialtyRepository specialtyRepo;
+//			Collection<Specialty> spec=specialtyRepo.findAll();
+//			for (Specialty specialty : spec) {
+//				if (specialty.getName().equals(s)) {
+//					this.getSpecialtiesInternal().add(specialty);
+//				}
+//			}
+//			
+//		}
+//	}
+	
+	public void deleteSpecialty(final Specialty specialty) {
+		this.getSpecialtiesInternal().remove(specialty);
+	}
+	
+	public void deleteAllSpecialties() {
+		this.specialties = new ArrayList<>();
 	}
 
 }
