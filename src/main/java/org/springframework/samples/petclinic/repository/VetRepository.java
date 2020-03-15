@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
@@ -65,6 +66,8 @@ public interface VetRepository {
 	 * @see BaseEntity#isNew
 	 */
 	void save(Vet vet) throws DataAccessException;
+	
+	void delete(int vetId);
 
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
 

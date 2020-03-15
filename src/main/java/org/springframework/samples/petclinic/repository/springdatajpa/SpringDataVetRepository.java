@@ -16,6 +16,8 @@
 
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
+import org.springframework.context.annotation.Primary;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +37,7 @@ import org.springframework.samples.petclinic.repository.VetRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
+@Primary
 public interface SpringDataVetRepository extends VetRepository, Repository<Vet, Integer> {
 
 	@Override
@@ -48,5 +51,10 @@ public interface SpringDataVetRepository extends VetRepository, Repository<Vet, 
 	@Override
 	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
+	
+	@Override
+	@Modifying
+	@Query("DELETE FROM Vet v WHERE v.id = ?1")
+	void delete(int vetId);
 
 }

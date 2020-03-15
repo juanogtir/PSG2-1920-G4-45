@@ -19,6 +19,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -33,6 +34,7 @@ import org.springframework.samples.petclinic.repository.PetRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
+@Primary
 public interface SpringDataPetRepository extends PetRepository, Repository<Pet, Integer> {
 
 	@Override
@@ -43,7 +45,6 @@ public interface SpringDataPetRepository extends PetRepository, Repository<Pet, 
 	@Modifying
 	@Query("DELETE FROM Pet p WHERE p.id = ?1")
 	void delete(int petId);
-	
 
 
 }

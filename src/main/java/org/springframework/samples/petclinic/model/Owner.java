@@ -109,8 +109,7 @@ public class Owner extends Person {
 	}
 	
 	public void removePet(Pet pet) {
-		getPetsInternal().remove(pet);
-		
+		getPetsInternal().remove(pet);	
 	}
 
 	/**

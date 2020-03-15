@@ -115,6 +115,7 @@ public class PetController {
 	}
 	@GetMapping(value = "/pets/{petId}/remove")
 	public String processDeleteForm(@PathVariable("petId") int petId,@PathVariable int ownerId, ModelMap model) {
+		
 		Pet pet = this.clinicService.findPetById(petId);
 		Owner owner = this.clinicService.findOwnerById(ownerId);
 		owner.removePet(pet);

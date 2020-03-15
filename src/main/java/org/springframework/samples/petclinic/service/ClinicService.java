@@ -16,11 +16,13 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -39,6 +41,8 @@ import org.springframework.samples.petclinic.repository.SpecialtyRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataPetRepository;
+import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVetRepository;
+import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVisitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +67,9 @@ public class ClinicService {
 	
 	private SpringDataPetRepository dataPetRepository;
 	
+	
+	private SpringDataVisitRepository dataVisitRepository;
+  
 	private PetHotelRepository petHotelRepository;
 
 
@@ -115,7 +122,6 @@ public class ClinicService {
 	@Transactional
 	public void removePet(final Pet pet) throws DataAccessException {
 		this.dataPetRepository.delete(pet.getId());
-
 	}
 
 	@Transactional(readOnly = true)
@@ -132,8 +138,8 @@ public class ClinicService {
 	public void saveVet(final Vet vet) throws DataAccessException {
 		this.vetRepository.save(vet);
 	}
+	
 
-	@Transactional
 	public void saveSpecialty(@Valid final Specialty specialty) {
 		this.specialtyRepository.save(specialty);
 	}
@@ -196,4 +202,10 @@ public class ClinicService {
 	public List<PetHotel> findPetHotelsByPetId(int id) throws DataAccessException {
 		return petHotelRepository.findPetHotelsByPetId(id);
 	}
+
+	@Transactional(readOnly = true)
+	public Visit findVisitById(int id) throws DataAccessException {
+		return visitRepository.findById(id).get();
+	}
+
 }
