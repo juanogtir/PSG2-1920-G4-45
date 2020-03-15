@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
@@ -22,6 +21,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
@@ -38,6 +38,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 /**
  * @author Juergen Hoeller
  * @author Mark Fisher
@@ -68,6 +72,35 @@ public class VetController {
 		vets.getVetList().addAll(this.clinicService.findVets());
 		model.put("vets", vets);
 		return "vets/vetList";
+	}
+	
+	@GetMapping(value = { "/vets/new" })
+	public String createVet(final ModelMap modelMap) {
+		String view = "vets/createOrUpdateVetForm";
+		modelMap.addAttribute("vet", new Vet());
+		Collection<Specialty> specialties = this.clinicService.getAllSpecialties();
+		modelMap.addAttribute("specialties", specialties);
+		return view;
+	}
+	
+	@PostMapping(value = { "/vets/new" })
+	public String saveVet(final Integer[] specialties, @Valid final Vet vet, final BindingResult result, final Map<String, Object> modelMap) {
+		String view = "vets/vetList";
+		if(result.hasErrors()) {
+			modelMap.put("vet", vet);
+			return "vets/createOrUpdateVetForm";
+		}
+		else {
+			if(specialties!=null) {
+				for(Integer i : specialties) {
+					vet.addSpecialty(this.clinicService.findSpecialtyById(i));
+				}
+			}
+			clinicService.saveVet(vet);
+			modelMap.put("message", "Vet successfully saved!");
+			view=showVetList(modelMap);
+		}
+		return view;
 	}
 
 	@GetMapping(value = {

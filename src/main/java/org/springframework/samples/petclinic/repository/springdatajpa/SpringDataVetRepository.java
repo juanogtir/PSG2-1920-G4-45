@@ -17,9 +17,11 @@
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -41,7 +43,7 @@ public interface SpringDataVetRepository extends VetRepository, Repository<Vet, 
 
 	@Override
 	@Query("SELECT specialty FROM Specialty specialty ORDER BY specialty.name")
-	Set<Specialty> findVetSpecialities() throws DataAccessException;
+	List<Specialty> findVetSpecialities() throws DataAccessException;
 
 	@Override
 	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
