@@ -17,14 +17,18 @@ package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +46,10 @@ public class OwnerController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
 	private final ClinicService clinicService;
+	
+	@Autowired
+	private OwnerService ownerService;
+	
 
 	@Autowired
 	public OwnerController(ClinicService clinicService) {
@@ -136,4 +144,38 @@ public class OwnerController {
 		return mav;
 	}
 
+	@PostMapping(path="/save")
+	public String salvarDueños(@Valid Owner owner, BindingResult result, ModelMap modelMap) {
+		String view = "owners/listOwners";
+		if(result.hasErrors()) {
+			modelMap.addAttribute("owner",owner);
+			return "owners/editOwner";
+		}else {
+			ownerService.save(owner);
+			modelMap.addAttribute("message", "Owner succesfully saved!");
+		}
+		return view;
+	}
+	
+//	@GetMapping()
+//	public String listadoDueños(ModelMap modelMap) {
+//		String vista = "owners/listOwners";
+//		Iterable<Owner> owners = ownerService.findAll();
+//		modelMap.addAttribute("owners", owners);
+//		return vista;
+//	}
+//	
+	
+	@GetMapping(path="/owners/delete/{ownerId}")
+	public String borrarDueño(@PathVariable("ownerId") int ownerId, ModelMap modelMap) {
+		String view = "redirect:/owners";
+		 Owner owner = ownerService.findOwnerbyId(ownerId);
+		 if(owner!=null) {
+			 ownerService.delete(owner);	
+			 modelMap.addAttribute("message","Owner succesfully deleted!");
+		 }else {
+			 modelMap.addAttribute("message","Owner not found!");
+		 }
+		 return view;
+	}
 }

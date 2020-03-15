@@ -1,3 +1,4 @@
+
 <%@ page session="false" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,11 +9,12 @@
 <petclinic:layout pageName="vets">
 	<h2>Vets</h2>
 
+
 	<table id="vetsTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Specialties</th>
+				<th>Nombre</th>
+				<th>Especialidades</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,11 +25,18 @@
 						</spring:url> <a href="${fn:escapeXml(vetUrl)}"> <c:out value="${vet.firstName} ${vet.lastName}" /></a></td>
 					<td><c:forEach var="specialty" items="${vet.specialties}">
 							<c:out value="${specialty.name} " />
-						</c:forEach> <c:if test="${vet.nrOfSpecialties == 0}">none</c:if></td>
+						</c:forEach> <c:if test="${vet.nrOfSpecialties == 0}">niguna</c:if></td>
+          <td>
+                <spring:url value="/vets/delete/{vetId}" var="vetUrl">
+        		<spring:param name="vetId" value="${vet.id}"/>
+    			</spring:url>
+    			<a href="${fn:escapeXml(vetUrl)}">Eliminar veterinario</a>
+    			</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+
 
 	<table class="table-buttons">
 		<tr>

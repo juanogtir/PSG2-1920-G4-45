@@ -16,6 +16,8 @@
 
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
+import org.springframework.context.annotation.Primary;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -33,6 +35,7 @@ import org.springframework.samples.petclinic.repository.VetRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
+@Primary
 public interface SpringDataVetRepository extends VetRepository, Repository<Vet, Integer> {
 
 	@Override

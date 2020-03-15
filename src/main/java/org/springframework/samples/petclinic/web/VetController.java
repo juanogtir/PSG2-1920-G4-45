@@ -23,12 +23,16 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.samples.petclinic.service.VetService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,6 +57,9 @@ public class VetController {
 
 
 	@Autowired
+	private VetService vetService;
+	
+
 	public VetController(final ClinicService clinicService) {
 		this.clinicService = clinicService;
 	}
@@ -80,6 +87,20 @@ public class VetController {
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.clinicService.findVets());
 		return vets;
+	}
+
+
+	@GetMapping(path="/vets/delete/{vetId}")
+	public String borrarVeterinario(@PathVariable("vetId") int vetId, ModelMap modelMap) {
+		String view = "redirect:/vets";
+		 Vet vet = vetService.findOwnerbyId(vetId);
+		 if(vet!=null) {
+			 vetService.delete(vet);	
+			 modelMap.addAttribute("message","Vet succesfully deleted!");
+		 }else {
+			 modelMap.addAttribute("message","Vet not found!");
+		 }
+		 return view;
 	}
 
 	@ModelAttribute("specialties")
@@ -127,5 +148,6 @@ public class VetController {
 		mav.addObject(this.clinicService.findVetById(vetId));
 		return mav;
 	}
+
 
 }
