@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -49,5 +50,10 @@ public interface SpringDataVetRepository extends VetRepository, Repository<Vet, 
 	@Override
 	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
+	
+	@Override
+	@Modifying
+	@Query("DELETE FROM Vet v WHERE v.id = ?1")
+	void delete(int vetId);
 
 }

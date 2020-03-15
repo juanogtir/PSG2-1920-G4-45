@@ -93,9 +93,9 @@ public class VetController {
 	@GetMapping(path="/vets/delete/{vetId}")
 	public String borrarVeterinario(@PathVariable("vetId") int vetId, ModelMap modelMap) {
 		String view = "redirect:/vets";
-		 Vet vet = vetService.findOwnerbyId(vetId);
+		 Vet vet = this.vetService.findOwnerbyId(vetId);
 		 if(vet!=null) {
-			 vetService.delete(vet);	
+			 this.vetService.removeVet(vet);	
 			 modelMap.addAttribute("message","Vet succesfully deleted!");
 		 }else {
 			 modelMap.addAttribute("message","Vet not found!");
