@@ -51,3 +51,6 @@ INSERT INTO visits VALUES (1, 7, '2013-01-01', 'vacuna antirrábica');
 INSERT INTO visits VALUES (2, 8, '2013-01-02', 'vacuna antirrábica');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'castrado');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'esterilizada');
+
+INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04', '2010-03-04');
+INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04', '2010-03-04');

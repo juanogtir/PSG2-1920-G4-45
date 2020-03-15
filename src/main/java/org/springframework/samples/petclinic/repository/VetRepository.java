@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,13 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
+<<<<<<< HEAD
+=======
+import org.springframework.samples.petclinic.model.BaseEntity;
+>>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
@@ -39,6 +47,7 @@ public interface VetRepository {
 
 	/**
 	 * Retrieve all <code>Vet</code>s from the data store.
+	 *
 	 * @return a <code>Collection</code> of <code>Vet</code>s
 	 */
 	void save(Vet vet) throws DataAccessException;
@@ -50,5 +59,29 @@ public interface VetRepository {
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
 	
 	List<Specialty> findVetSpecialities() throws DataAccessException;
+
+	/**
+	 * Retrieve a <code>Vet</code> from the data store by id.
+	 *
+	 * @param id
+	 *            the id to search for
+	 * @return the <code>Vet</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException
+	 *             if not found
+	 */
+	Vet findById(int id) throws DataAccessException;
+
+	/**
+	 * Save a <code>Vet</code> to the data store, either inserting or updating it.
+	 *
+	 * @param vet
+	 *            the <code>Vet</code> to save
+	 * @see BaseEntity#isNew
+	 */
+	void save(Vet vet) throws DataAccessException;
+
+	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
+
+	Set<Specialty> findVetSpecialities() throws DataAccessException;
 
 }
