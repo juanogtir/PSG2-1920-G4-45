@@ -17,13 +17,10 @@
 package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
-import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Specialty;
-import org.springframework.samples.petclinic.model.Vet;
 
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant
@@ -36,37 +33,55 @@ import org.springframework.samples.petclinic.model.Vet;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface VetRepository extends CrudRepository<Vet, Integer>{
+public interface SpecialtyRepository {
 
 	/**
-	 * Retrieve all <code>Vet</code>s from the data store.
+	 * Retrieve all <code>Specialty</code>s from the data store.
 	 *
-	 * @return a <code>Collection</code> of <code>Vet</code>s
+	 * @return a <code>Collection</code> of <code>Specialty</code>s
 	 */
-	Collection<Vet> findAll() throws DataAccessException;
+	Collection<Specialty> findAll() throws DataAccessException;
 
 	/**
-	 * Retrieve a <code>Vet</code> from the data store by id.
+	 * Retrieve a <code>Specialty</code> from the data store by id.
 	 *
 	 * @param id
 	 *            the id to search for
-	 * @return the <code>Vet</code> if found
+	 * @return the <code>Specialty</code> if found
 	 * @throws org.springframework.dao.DataRetrievalFailureException
 	 *             if not found
 	 */
-	Vet findById(int id) throws DataAccessException;
+	Specialty findById(int id) throws DataAccessException;
+
+	Specialty findSpecialtiesById(Integer id) throws DataAccessException;
 
 	/**
-	 * Save a <code>Vet</code> to the data store, either inserting or updating it.
+	 * Retrieve all <code>Specialty</code>s from a vet of the data store.
+	 *
+	 * @param id
+	 *
+	 * @return a <code>Collection</code> of <code>Specialty</code>s
+	 */
+	Collection<Specialty> findByVetId(int id) throws DataAccessException;
+
+	/**
+	 * Save a <code>Specialty</code> to the data store, either inserting or updating it.
 	 *
 	 * @param vet
-	 *            the <code>Vet</code> to save
+	 *            the <code>Specialty</code> to save
 	 * @see BaseEntity#isNew
 	 */
-	void save(Vet vet) throws DataAccessException;
+	void save(Specialty vet) throws DataAccessException;
 
-	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
-
-	Set<Specialty> findVetSpecialities() throws DataAccessException;
+	/**
+	 * Deletes a <code>Specialty</code> from the data store by id.
+	 *
+	 * @param id
+	 *            the id to search for
+	 * @return the <code>Specialty</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException
+	 *             if not found
+	 */
+	void deleteById(int id);
 
 }

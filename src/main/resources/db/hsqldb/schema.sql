@@ -5,7 +5,16 @@ DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
+DROP TABLE pet_hotel IF EXISTS;
 
+
+CREATE TABLE pet_hotel (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  pet_id INTEGER,
+  info VARCHAR(30),
+  initial_date DATE,
+  end_date DATE
+);
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,

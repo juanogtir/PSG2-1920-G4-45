@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,10 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
 import org.springframework.context.annotation.Primary;
+
+import java.util.Collection;
+import java.util.Set;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.repository.VetRepository;
 
@@ -28,5 +37,17 @@ import org.springframework.samples.petclinic.repository.VetRepository;
  */
 @Primary
 public interface SpringDataVetRepository extends VetRepository, Repository<Vet, Integer> {
+
+	@Override
+	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")
+	Vet findById(@Param("id") int id);
+
+	@Override
+	@Query("SELECT specialty FROM Specialty specialty ORDER BY specialty.name")
+	Set<Specialty> findVetSpecialities() throws DataAccessException;
+
+	@Override
+	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
+	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
 
 }
