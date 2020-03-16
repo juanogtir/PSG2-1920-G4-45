@@ -110,13 +110,6 @@
                             </td>
                             
                             <td>
-                                <spring:url value="/owners/{ownerId}/pets/{petId}/pet-hotels/new" var="petHotelUrl">
-                                    <spring:param name="ownerId" value="${owner.id}"/>
-                                    <spring:param name="petId" value="${pet.id}"/>
-                                </spring:url>
-                                <a href="${fn:escapeXml(removeUrl)}">Eliminar Mascota</a>
-                            </td>
-
                                 <a href="${fn:escapeXml(petHotelUrl)}">Nueva reserva en hotel de mascotas</a>
                             </td>          
                             
