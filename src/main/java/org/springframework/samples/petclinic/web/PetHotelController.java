@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetHotel;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +40,11 @@ public class PetHotelController {
 	public Pet findPet(@PathVariable("petId") int petId) {
 		return this.clinicService.findPetById(petId);
 	}
+	@ModelAttribute("owner")
+	public Owner findOwner(@PathVariable("ownerId") int ownerId) {
+		return this.clinicService.findOwnerById(ownerId);
+	}
+
 
 	@InitBinder("pet")
 	public void initPetBinder(WebDataBinder dataBinder) {
@@ -74,5 +80,19 @@ public class PetHotelController {
 		return "pet-hotel/petHotelList";
 	}
 
+	@GetMapping(value="/delete/{petHotelId}")
+	public String borrarPetHotel(@PathVariable("petHotelId") int petHotelId,@PathVariable("ownerId") int ownerId,
+			@PathVariable("petId") int petId, ModelMap modelMap) {
+		String view = "redirect:/owners/{ownerId}/pets/{petId}/pet-hotels/list";
+		Pet pet = findPet(petId);
+		PetHotel petHotel = this.clinicService.findPetHotelById(petHotelId);
+		 if(petHotel!=null) {
+			 this.clinicService.removePetHotel(petHotel);	
+			 modelMap.addAttribute("message","PetHotel succesfully deleted!");
+		 }else {
+			 modelMap.addAttribute("message","PetHotel not found!");
+		 }
+		 return view;
+	}
 	
 }

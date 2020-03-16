@@ -122,7 +122,7 @@ public class ClinicService {
 	}
 	@Transactional
 	public void removePet(final Pet pet) throws DataAccessException {
-		this.dataPetRepository.delete(pet.getId());
+		this.dataPetRepository.delete(pet);
 	}
 
 	@Transactional(readOnly = true)
@@ -209,4 +209,14 @@ public class ClinicService {
 		return visitRepository.findById(id).get();
 	}
 
+	@Transactional
+	public void removePetHotel(final PetHotel petHotel) throws DataAccessException {
+		this.petHotelRepository.delete(petHotel.getId());;
+	}
+	
+	@Transactional
+	public void removePetVisits(final Pet pet) throws DataAccessException {
+		List<Visit> visitas = pet.getVisits();
+		visitas.removeAll(visitas);
+	}
 }

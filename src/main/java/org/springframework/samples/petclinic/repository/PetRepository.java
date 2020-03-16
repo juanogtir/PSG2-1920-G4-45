@@ -50,8 +50,6 @@ public interface PetRepository {
 	 */
 	Pet findById(int id) throws DataAccessException;
 
-	void delete(int petId);
-
 	/**
 	 * Save a <code>Pet</code> to the data store, either inserting or updating it.
 	 * @param pet the <code>Pet</code> to save
@@ -59,6 +57,7 @@ public interface PetRepository {
 	 */
 	void save(Pet pet) throws DataAccessException;
 	
+	void delete(Pet pet) throws DataAccessException;
 
 	
 

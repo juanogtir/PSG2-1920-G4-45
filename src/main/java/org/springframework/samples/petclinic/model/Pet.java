@@ -112,7 +112,10 @@ public class Pet extends NamedEntity {
 		for (Visit v : visitas) {
 				this.visits.remove(v);
 			}
-		
+	}
+
+	public void removeVisits(List<Visit> visitas) {
+		getVisitsInternal().removeAll(visitas);
 	}
 	
 }
