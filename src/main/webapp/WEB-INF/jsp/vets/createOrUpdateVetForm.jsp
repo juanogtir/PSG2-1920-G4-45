@@ -8,7 +8,7 @@
 
 <petclinic:layout pageName="vets">
 	<h2>
-<<<<<<< HEAD
+
 		<c:if test="${vet['new']}">Nuevo </c:if>
 		Veterinario
 	</h2>
@@ -35,23 +35,4 @@
 		</div>
 	</form:form>
 </petclinic:layout>
-=======
-		<c:if test="${vet['new']}">New </c:if>
-		Vet
-	</h2>
 
-	<form:form modelAttribute="vet" class="form-horizontal" id="add-vet-form">
-		<div class="form-group has-feedback">
-			<petclinic:inputField label="First Name" name="firstName" />
-			<petclinic:inputField label="Last Name" name="lastName" />
-			<form:select path="specialties" items="${specialties}" size="5" itemLabel="name" itemValue="id"/>
-		</div>
-		<div class="form-group">
-			<input type="hidden" name="id" value="${vet.id}" />
-			<div class="col-sm-offset-2 col-sm-10">
-				<button class="btn btn-default" type="submit">Update Vet</button>
-			</div>
-		</div>
-	</form:form>
-</petclinic:layout>
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
