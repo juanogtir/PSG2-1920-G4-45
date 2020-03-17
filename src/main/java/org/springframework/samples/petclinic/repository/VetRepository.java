@@ -73,4 +73,28 @@ public interface VetRepository {
 
 	List<Specialty> findVetSpecialities() throws DataAccessException;
 
+	/**
+	 * Retrieve a <code>Vet</code> from the data store by id.
+	 *
+	 * @param id
+	 *            the id to search for
+	 * @return the <code>Vet</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException
+	 *             if not found
+	 */
+	Vet findById(int id) throws DataAccessException;
+
+	/**
+	 * Save a <code>Vet</code> to the data store, either inserting or updating it.
+	 *
+	 * @param vet
+	 *            the <code>Vet</code> to save
+	 * @see BaseEntity#isNew
+	 */
+	void save(Vet vet) throws DataAccessException;
+
+	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
+
+	Set<Specialty> findVetSpecialities() throws DataAccessException;
+
 }

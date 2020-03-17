@@ -1,4 +1,3 @@
-
 <%@ page session="false" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -7,8 +6,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="vets">
-    <h2>Veterinarios</h2>
-
+	<h2>Veterinarios</h2>
 
 	<table id="vetsTable" class="table table-striped">
 		<thead>
@@ -42,8 +40,9 @@
 		<tr>
 			<td><a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a></td>
 			<td>
-            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir veterinario</a>
+            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>AÃ±adir veterinario</a>
             </td>
 		</tr>
 	</table>
+
 </petclinic:layout>

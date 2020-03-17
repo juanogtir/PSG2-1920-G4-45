@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.springframework.samples.petclinic.model;
 
 import java.util.ArrayList;
@@ -54,7 +55,9 @@ public class Vet extends Person {
 	inverseJoinColumns = @JoinColumn(name = "specialty_id"))
 	private List<Specialty> specialties;
 
+
 	protected List<Specialty> getSpecialtiesInternal() {
+
 		if (this.specialties == null) {
 			this.specialties = new ArrayList<>();
 		}
@@ -76,6 +79,7 @@ public class Vet extends Person {
 		return this.getSpecialtiesInternal().size();
 	}
 
+
 	public void addSpecialty(final Specialty specialty) {
 		this.getSpecialtiesInternal().add(specialty);
 	}
@@ -90,6 +94,6 @@ public class Vet extends Person {
 
 	public void deleteAllSpecialties() {
 		this.specialties = new ArrayList<>();
-	}
+
 
 }

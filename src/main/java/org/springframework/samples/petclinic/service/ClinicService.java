@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0 
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -67,13 +68,13 @@ public class ClinicService {
 	
 	private SpringDataPetRepository dataPetRepository;
 	
-	
 	private SpringDataVisitRepository dataVisitRepository;
   
 	private PetHotelRepository petHotelRepository;
 
 
-	@Autowired
+
+
 	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final SpecialtyRepository specialtyRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository,
 		final SpringDataPetRepository dataPetRepository, PetHotelRepository petHotelRepository) {
 		this.petRepository = petRepository;
@@ -83,6 +84,7 @@ public class ClinicService {
 		this.visitRepository = visitRepository;
 		this.dataPetRepository = dataPetRepository;
 		this.petHotelRepository = petHotelRepository;
+
 	}
 
 	@Transactional(readOnly = true)
@@ -101,7 +103,7 @@ public class ClinicService {
 	}
 
 	@Transactional
-	public void saveOwner(final Owner owner) throws DataAccessException {
+	public void saveOwner(final Owner owner) throws DataAccessException { 
 		this.ownerRepository.save(owner);
 	}
 
@@ -121,7 +123,7 @@ public class ClinicService {
 	}
 	@Transactional
 	public void removePet(final Pet pet) throws DataAccessException {
-		this.dataPetRepository.delete(pet);
+		this.dataPetRepository.delete(pet.getId());
 	}
 
 	@Transactional(readOnly = true)
@@ -138,8 +140,8 @@ public class ClinicService {
 	public void saveVet(final Vet vet) throws DataAccessException {
 		this.vetRepository.save(vet);
 	}
-	
 
+	@Transactional
 	public void saveSpecialty(@Valid final Specialty specialty) {
 		this.specialtyRepository.save(specialty);
 	}
@@ -175,7 +177,8 @@ public class ClinicService {
 			vet.deleteSpecialty(this.findSpecialtyById(specialtyId));
 		}
 		this.specialtyRepository.deleteById(specialtyId);
-	}
+  }
+  
 
 	@Transactional(readOnly = true)
 	@Cacheable(value = "vets")
@@ -203,7 +206,10 @@ public class ClinicService {
 		return petHotelRepository.findPetHotelsByPetId(id);
 	}
 
-	@Transactional(readOnly = true)
+
+	
+    
+  @Transactional(readOnly = true)
 	public Visit findVisitById(int id) throws DataAccessException {
 		return visitRepository.findById(id).get();
 	}
