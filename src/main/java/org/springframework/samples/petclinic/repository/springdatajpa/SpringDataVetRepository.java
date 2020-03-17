@@ -16,18 +16,14 @@
 
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
+import org.springframework.context.annotation.Primary;
+
 import java.util.Collection;
-<<<<<<< HEAD
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Modifying;
-=======
-import java.util.Set;
-
-import org.springframework.dao.DataAccessException;
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -41,6 +37,7 @@ import org.springframework.samples.petclinic.repository.VetRepository;
  * @author Michael Isvy
  * @since 15.1.2013
  */
+@Primary
 public interface SpringDataVetRepository extends VetRepository, Repository<Vet, Integer> {
 
 	@Override
@@ -49,20 +46,16 @@ public interface SpringDataVetRepository extends VetRepository, Repository<Vet, 
 
 	@Override
 	@Query("SELECT specialty FROM Specialty specialty ORDER BY specialty.name")
-<<<<<<< HEAD
 	List<Specialty> findVetSpecialities() throws DataAccessException;
 
 	@Override
 	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
 
-	
-=======
-	Set<Specialty> findVetSpecialities() throws DataAccessException;
-
 	@Override
-	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
-	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
+	@Modifying
+	@Query("DELETE FROM Vet v WHERE v.id = ?1")
+	void delete(int vetId);
 
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
+
 }

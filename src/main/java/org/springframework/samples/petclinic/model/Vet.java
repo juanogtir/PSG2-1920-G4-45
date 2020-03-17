@@ -51,32 +51,20 @@ import lombok.Data;
 public class Vet extends Person {
 
 	@ManyToMany(fetch = FetchType.EAGER)
-<<<<<<< HEAD
 	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"),
-			inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+	inverseJoinColumns = @JoinColumn(name = "specialty_id"))
 	private List<Specialty> specialties;
-=======
-	@JoinTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
-	private Set<Specialty> specialties;
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 
-<<<<<<< HEAD
+
 	protected List<Specialty> getSpecialtiesInternal() {
-=======
 
-	protected Set<Specialty> getSpecialtiesInternal() {
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 		if (this.specialties == null) {
 			this.specialties = new ArrayList<>();
 		}
 		return this.specialties;
 	}
 
-<<<<<<< HEAD
 	protected void setSpecialtiesInternal(final List<Specialty> specialties) {
-=======
-	protected void setSpecialtiesInternal(final Set<Specialty> specialties) {
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 		this.specialties = specialties;
 	}
 
@@ -91,49 +79,21 @@ public class Vet extends Person {
 		return this.getSpecialtiesInternal().size();
 	}
 
-<<<<<<< HEAD
-	public void addSpecialty(Specialty specialty) {
-		this.getSpecialtiesInternal().add(specialty);
-	}
-	
-	public void addSpecialties(List<Specialty> specialties) {
-//		for(Specialty s : specialties) {
-//			this.getSpecialtiesInternal().add(s);
-//		}
-		this.setSpecialtiesInternal(specialties);
-	}
-	
-//	public void addSpecialties(String[] specialtiesNamesArray) {
-//		for(String s : specialtiesNamesArray) {
-//			SpecialtyRepository specialtyRepo;
-//			Collection<Specialty> spec=specialtyRepo.findAll();
-//			for (Specialty specialty : spec) {
-//				if (specialty.getName().equals(s)) {
-//					this.getSpecialtiesInternal().add(specialty);
-//				}
-//			}
-//			
-//		}
-//	}
-	
-	public void deleteSpecialty(final Specialty specialty) {
-		this.getSpecialtiesInternal().remove(specialty);
-	}
-	
-	public void deleteAllSpecialties() {
-		this.specialties = new ArrayList<>();
-=======
+
 	public void addSpecialty(final Specialty specialty) {
 		this.getSpecialtiesInternal().add(specialty);
 	}
+	
+	public void addSpecialties(final List<Specialty> specialties) {
+		this.setSpecialtiesInternal(specialties);
+	}
 
 	public void deleteSpecialty(final Specialty specialty) {
 		this.getSpecialtiesInternal().remove(specialty);
 	}
 
 	public void deleteAllSpecialties() {
-		this.specialties = new HashSet<>();
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
-	}
+		this.specialties = new ArrayList<>();
+
 
 }

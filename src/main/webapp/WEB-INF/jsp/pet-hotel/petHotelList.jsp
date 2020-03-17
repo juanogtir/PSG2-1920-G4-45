@@ -14,7 +14,7 @@
     <table id="petHotelTable" class="table table-striped">
         <thead>
         <tr>
-            <th style="width: 200px;">Información</th>
+            <th style="width: 200px;">InformaciÃ³n</th>
             <th>Fecha de inicio</th>
             <th>Fecha final</th>
         </tr>
@@ -31,6 +31,15 @@
                 <td>
                		<c:out value="${petHotel.endDate}"/>
            		</td>
+
+           		 <td>
+             <spring:url value="/owners/{ownerId}/pets/{petId}/pet-hotels/delete/{petHotelId}" var="petHotelUrl">
+        		<spring:param name="petHotelId" value="${petHotel.id}"/>
+        		<spring:param name="ownerId" value="${owner.id}"/>
+        		<spring:param name="petId" value="${pet.id}"/>
+    			</spring:url>
+    			<a href="${fn:escapeXml(petHotelUrl)}">Eliminar reserva</a>
+    			</td>
             </tr>
         </c:forEach>
         </tbody>

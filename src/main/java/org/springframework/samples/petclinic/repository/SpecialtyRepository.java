@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2002-2013 the original author or authors.
  *
@@ -86,3 +85,4 @@ public interface SpecialtyRepository {
 	void deleteById(int id);
 
 }
+

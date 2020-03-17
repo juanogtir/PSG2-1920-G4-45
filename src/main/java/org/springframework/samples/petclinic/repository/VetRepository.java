@@ -17,17 +17,12 @@
 package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
-<<<<<<< HEAD
-=======
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.BaseEntity;
->>>>>>> branch 'createVet' of https://github.com/gii-is-psg2/PSG2-1920-G4-45.git
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
@@ -50,14 +45,32 @@ public interface VetRepository {
 	 *
 	 * @return a <code>Collection</code> of <code>Vet</code>s
 	 */
+	Collection<Vet> findAll() throws DataAccessException;
+
+	/**
+	 * Retrieve a <code>Vet</code> from the data store by id.
+	 *
+	 * @param id
+	 *            the id to search for
+	 * @return the <code>Vet</code> if found
+	 * @throws org.springframework.dao.DataRetrievalFailureException
+	 *             if not found
+	 */
+	Vet findById(int id) throws DataAccessException;
+
+	/**
+	 * Save a <code>Vet</code> to the data store, either inserting or updating it.
+	 *
+	 * @param vet
+	 *            the <code>Vet</code> to save
+	 * @see BaseEntity#isNew
+	 */
 	void save(Vet vet) throws DataAccessException;
 	
-	Collection<Vet> findAll() throws DataAccessException;
-	
-	Vet findById(int id) throws DataAccessException;
-	
+	void delete(int vetId);
+
 	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
-	
+
 	List<Specialty> findVetSpecialities() throws DataAccessException;
 
 	/**

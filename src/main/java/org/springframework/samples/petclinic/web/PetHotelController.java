@@ -40,6 +40,7 @@ public class PetHotelController {
 		return this.clinicService.findPetById(petId);
 	}
 
+
 	@InitBinder("pet")
 	public void initPetBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new PetValidator());
@@ -72,6 +73,23 @@ public class PetHotelController {
 		model.put("petHotels", this.clinicService.findPetHotelsByPetId(petId));
 		List<PetHotel> p = this.clinicService.findPetHotelsByPetId(petId);
 		return "pet-hotel/petHotelList";
+	}
+
+
+
+	@GetMapping(value="/delete/{petHotelId}")
+	public String borrarPetHotel(@PathVariable("petHotelId") int petHotelId,@PathVariable("ownerId") int ownerId,
+			@PathVariable("petId") int petId, ModelMap modelMap) {
+		String view = "redirect:/owners/{ownerId}/pets/{petId}/pet-hotels/list";
+		Pet pet = findPet(petId);
+		PetHotel petHotel = this.clinicService.findPetHotelById(petHotelId);
+		 if(petHotel!=null) {
+			 this.clinicService.removePetHotel(petHotel);	
+			 modelMap.addAttribute("message","PetHotel succesfully deleted!");
+		 }else {
+			 modelMap.addAttribute("message","PetHotel not found!");
+		 }
+		 return view;
 	}
 
 	

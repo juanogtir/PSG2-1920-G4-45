@@ -20,10 +20,15 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.VisitService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +43,15 @@ import org.springframework.web.bind.annotation.*;
 public class VisitController {
 
 	private final ClinicService clinicService;
+	
+	@Autowired
+	private OwnerService ownerService;
+	
+	@Autowired
+	private PetService petService;
+	
+	@Autowired
+	private VisitService visitService;
 
 	@Autowired
 	public VisitController(ClinicService clinicService) {
@@ -88,5 +102,17 @@ public class VisitController {
 		model.put("visits", this.clinicService.findPetById(petId).getVisits());
 		return "visitList";
 	}
-
+   
+	@GetMapping(value="/owners/{ownerId}/pets/{petId}/visits/delete/{visitId}")
+	public String borrarVisita(@PathVariable("ownerId") int ownerId, @PathVariable("visitId") int visitId,
+			@PathVariable("petId") int petId, ModelMap modelMap) {
+		 String view = "redirect:/owners/{ownerId}";
+		 Pet pet = this.clinicService.findPetById(petId);
+		 Visit visit = this.clinicService.findVisitById(visitId);
+			 pet.removeVisit(visit);
+			// this.clinicService.savePet(pet);
+			 this.visitService.delete(visitId);
+			// modelMap.addAttribute("message","Visit succesfully deleted!");
+		 return view;
+	}
 }

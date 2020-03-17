@@ -15,7 +15,6 @@ public interface PetHotelRepository extends CrudRepository<PetHotel, Integer>{
 	
 	@Query("SELECT ph FROM PetHotel ph WHERE ph.pet.id = ?1")
 	List<PetHotel> findPetHotelsByPetId(int id) throws DataAccessException;
-	
 //	void savePetHotel(PetHotel petHotel) throws DataAccessException;
 	
 }
