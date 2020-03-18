@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -108,13 +109,16 @@ public class PetController {
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			owner.addPet(pet);
+			pet.setOwner(owner);
 			this.clinicService.savePet(pet);
+			//owner.addPet(pet);
+			
 			return "redirect:/owners/{ownerId}";
 		}
 	}
 	@GetMapping(value = "/pets/{petId}/remove")
 	public String processDeleteForm(@PathVariable("petId") int petId,@PathVariable int ownerId, ModelMap model) {
+		
 		Pet pet = this.clinicService.findPetById(petId);
 		Owner owner = this.clinicService.findOwnerById(ownerId);
 		owner.removePet(pet);

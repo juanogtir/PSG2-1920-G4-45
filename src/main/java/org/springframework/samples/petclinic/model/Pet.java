@@ -81,7 +81,7 @@ public class Pet extends NamedEntity {
 		return this.owner;
 	}
 
-	protected void setOwner(Owner owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 
@@ -107,4 +107,15 @@ public class Pet extends NamedEntity {
 		visit.setPet(this);
 	}
 
+	public void removeVisit(Visit visit) {
+		List<Visit> visitas = this.getVisits();
+		for (Visit v : visitas) {
+				this.visits.remove(v);
+			}
+	}
+
+	public void removeVisits(List<Visit> visitas) {
+		getVisitsInternal().removeAll(visitas);
+	}
+	
 }

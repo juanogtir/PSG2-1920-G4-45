@@ -19,8 +19,8 @@ INSERT INTO types VALUES (1, 'gato');
 INSERT INTO types VALUES (2, 'perro');
 INSERT INTO types VALUES (3, 'lagarto');
 INSERT INTO types VALUES (4, 'serpiente');
-INSERT INTO types VALUES (5, 'pájaro');
-INSERT INTO types VALUES (6, 'hámster');
+INSERT INTO types VALUES (5, 'pajaro');
+INSERT INTO types VALUES (6, 'hamster');
 
 INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023');
 INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
@@ -51,3 +51,6 @@ INSERT INTO visits VALUES (1, 7, '2013-01-01', 'vacuna antirrábica');
 INSERT INTO visits VALUES (2, 8, '2013-01-02', 'vacuna antirrábica');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'castrado');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'esterilizada');
+
+INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04', '2010-03-04');
+INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04', '2010-03-04');

@@ -33,6 +33,11 @@
     </spring:url>
     <a href="${fn:escapeXml(editUrl)}" class="btn btn-default">Editar dueño</a>
 
+ 	<spring:url value="delete/{ownerId}" var="ownerUrl">
+        <spring:param name="ownerId" value="${owner.id}"/>
+    </spring:url>
+    <a href="${fn:escapeXml(ownerUrl)}" class="btn btn-default">Eliminar dueño</a>
+
     <spring:url value="{ownerId}/pets/new" var="addUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
@@ -69,6 +74,14 @@
                             <tr>
                                 <td><petclinic:localDate date="${visit.date}" pattern="yyyy-MM-dd"/></td>
                                 <td><c:out value="${visit.description}"/></td>
+                                 <td>
+		                <spring:url value="/owners/{ownerId}/pets/{petId}/visits/delete/{visitId}" var="visUrl">
+		        		<spring:param name="ownerId" value="${owner.id}"/>
+		        		<spring:param name="petId" value="${pet.id}"/>
+		        		<spring:param name="visitId" value="${visit.id}"/>
+		    			</spring:url>
+		    			<a href="${fn:escapeXml(visUrl)}">Eliminar visita</a>
+		    			</td>
                             </tr>
                         </c:forEach>
                         <tr>
@@ -79,6 +92,15 @@
                                 </spring:url>
                                 <a href="${fn:escapeXml(petUrl)}">Editar mascota</a>
                             </td>
+                            
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/remove" var="removeUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(removeUrl)}">Eliminar Mascota</a>
+                            </td>
+                            
                             <td>
                                 <spring:url value="/owners/{ownerId}/pets/{petId}/visits/new" var="visitUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
@@ -87,13 +109,24 @@
                                 <a href="${fn:escapeXml(visitUrl)}">Añadir visita</a>
                             </td>
                             
-                              <td>
-                                <spring:url value="/owners/{ownerId}/pets/{petId}/remove" var="removeUrl">
+                            <td>
+
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/pet-hotels/new" var="petHotelUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(removeUrl)}">Eliminar Mascota</a>
-                            </td>
+                                <a href="${fn:escapeXml(petHotelUrl)}">Nueva reserva en hotel de mascotas</a>
+                            </td>          
+                            
+                          
+                            <td>
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/pet-hotels/list" var="petHotelListUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                <a href="${fn:escapeXml(petHotelListUrl)}">Lista de reservas</a>
+                            </td>          
+                            
                         </tr>
                     </table>
                 </td>
