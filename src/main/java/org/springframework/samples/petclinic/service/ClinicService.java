@@ -123,7 +123,7 @@ public class ClinicService {
 	}
 	@Transactional
 	public void removePet(final Pet pet) throws DataAccessException {
-		this.dataPetRepository.delete(pet.getId());
+		this.dataPetRepository.delete(pet);
 	}
 
 	@Transactional(readOnly = true)
@@ -216,7 +216,7 @@ public class ClinicService {
 
 	@Transactional
 	public void removePetHotel(final PetHotel petHotel) throws DataAccessException {
-		this.petHotelRepository.delete(petHotel.getId());;
+		this.petHotelRepository.delete(petHotel);;
 	}
 	
 	@Transactional

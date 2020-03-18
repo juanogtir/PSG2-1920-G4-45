@@ -148,37 +148,11 @@ public class VetController {
 		 return view;
 	}
 
-	@ModelAttribute("specialties")
-	public Collection<Specialty> putSpecialities() {
-		return this.clinicService.findVetSpecialities();
-	}
+	
 
-	@GetMapping(value = "/vets/{vetId}/edit")
-	public String initUpdateVetForm(@PathVariable("vetId") final int vetId, final ModelMap model) {
-		Vet vet = this.clinicService.findVetById(vetId);
-		model.put("vet", vet);
+	
 
-		return VetController.VIEWS_VET_CREATE_OR_UPDATE_FORM;
-	}
-
-	@PostMapping(value = "/vets/{vetId}/edit")
-	public String processUpdateVetForm(@Valid final Vet vet, final BindingResult result, @PathVariable("vetId") final int vetId, final ModelMap model, @RequestParam(required = false) final Integer[] specialties) {
-		if (result.hasErrors()) {
-			model.put("vet", vet);
-			return VetController.VIEWS_VET_CREATE_OR_UPDATE_FORM;
-		} else {
-			if (specialties != null) {
-				vet.deleteAllSpecialties();
-				Set<Specialty> set = this.clinicService.findSpecialtiesById(specialties);
-				for (Specialty e : set) {
-					vet.addSpecialty(e);
-				}
-			}
-
-			this.clinicService.saveVet(vet);
-			return "redirect:/vets/{vetId}";
-		}
-	}
+	
 
 	/**
 	 * Custom handler for displaying a vet.
@@ -187,12 +161,7 @@ public class VetController {
 	 *            the ID of the vet to display
 	 * @return a ModelMap with the model attributes for the view
 	 */
-	@GetMapping("/vets/{vetId}")
-	public ModelAndView showVet(@PathVariable("vetId") final int vetId) {
-		ModelAndView mav = new ModelAndView("vets/vetDetails");
-		mav.addObject(this.clinicService.findVetById(vetId));
-		return mav;
-	}
+	
 
 
 	@ModelAttribute("specialties")
@@ -216,12 +185,11 @@ public class VetController {
 		} else {
 			if (specialties != null) {
 				vet.deleteAllSpecialties();
-				Set<Specialty> set = this.clinicService.findSpecialtiesById(specialties);
-				for (Specialty e : set) {
-					vet.addSpecialty(e);
+				for(Integer i : specialties) {
+					vet.addSpecialty(this.clinicService.findSpecialtyById(i));
 				}
-			}
 
+			}
 			this.clinicService.saveVet(vet);
 			return "redirect:/vets/{vetId}";
 		}
