@@ -8,6 +8,25 @@ CREATE TABLE IF NOT EXISTS pet_hotel (
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
 
+CREATE TABLE IF NOT EXISTS causes (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30),
+  description VARCHAR(50),
+  budgetTarget INTEGER,
+  organization VARCHAR(30),
+  closed BOOLEAN
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS donations (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  client_id INT(4) UNSIGNED NOT NULL,
+  cause_id INT(4) UNSIGNED NOT NULL,
+  donation_date DATE,
+  donation INTEGER,
+  FOREIGN KEY (client_id) REFERENCES owners(id)
+  FOREIGN KEY (cause_id) REFERENCES causes(id)
+) engine=InnoDB;
+
 CREATE TABLE IF NOT EXISTS vets (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
