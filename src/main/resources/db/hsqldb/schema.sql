@@ -16,6 +16,23 @@ CREATE TABLE pet_hotel (
   end_date DATE
 );
 
+CREATE TABLE causes (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  name VARCHAR(30),
+  description VARCHAR(50),
+  budgetTarget INTEGER,
+  organization VARCHAR(30),
+  closed BOOLEAN
+);
+
+CREATE TABLE donations (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  donation_date DATE,
+  donation INTEGER,
+  client_id    INTEGER NOT NULL,
+  cause_id    INTEGER NOT NULL
+);
+
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
   first_name VARCHAR(30),
