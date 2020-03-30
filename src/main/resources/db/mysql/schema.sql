@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS causes (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30),
   description VARCHAR(50),
-  budgetTarget INTEGER,
+  budget_target INTEGER,
   organization VARCHAR(30),
   closed BOOLEAN
 ) engine=InnoDB;
