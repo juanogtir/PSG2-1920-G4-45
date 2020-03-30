@@ -24,13 +24,12 @@ public class PetHotel extends BaseEntity {
 	
 	String info;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	LocalDateTime initialDate;
 	
 
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	LocalDateTime endDate;
-	
 	
 	
 }

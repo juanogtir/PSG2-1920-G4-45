@@ -26,12 +26,16 @@
                     <c:out value="${petHotel.info}"/>
 
                 </td>
-                <td>
-                    <spring:eval expression="petHotel.initialDate"></spring:eval>
+                <td> 
+                    <spring:eval expression="petHotel.initialDate.dayOfMonth"></spring:eval>-<spring:eval expression="petHotel.initialDate.month"></spring:eval>-<spring:eval expression="petHotel.initialDate.year"></spring:eval>
+                    <b> </b>     
+                    <spring:eval expression="petHotel.initialDate.Hour"></spring:eval>:<spring:eval expression="petHotel.initialDate.minute"></spring:eval>                  
                 </td>
-                <td>
-               		<spring:eval expression="petHotel.endDate"></spring:eval>
-           		</td>
+                <td> 
+                    <spring:eval expression="petHotel.endDate.dayOfMonth"></spring:eval>-<spring:eval expression="petHotel.endDate.month"></spring:eval>-<spring:eval expression="petHotel.endDate.year"></spring:eval>
+                    <b> </b>     
+                    <spring:eval expression="petHotel.endDate.Hour"></spring:eval>:<spring:eval expression="petHotel.endDate.minute"></spring:eval>                  
+                </td>
 
            		 <td>
              <spring:url value="/owners/{ownerId}/pets/{petId}/pet-hotels/delete/{petHotelId}" var="petHotelUrl">

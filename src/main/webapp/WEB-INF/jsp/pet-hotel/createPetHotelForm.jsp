@@ -13,8 +13,8 @@
     <form:form modelAttribute="petHotel" class="form-horizontal" id="add-petHotel-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="Info" name="info"/>
-            <petclinic:inputDateTimeField label="Feha de inicio" name="initialDate" /> 
-            <petclinic:inputDateTimeField label="Feha de fin" name="endDate" /> 
+            <petclinic:inputDateTimeField label="Fecha de inicio" name="initialDate" /> 
+            <petclinic:inputDateTimeField label="Fecha de fin" name="endDate" /> 
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
