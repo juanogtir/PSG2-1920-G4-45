@@ -55,8 +55,8 @@ INSERT INTO visits VALUES (4, 7, '2013-01-04', 'esterilizada');
 INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04', '2010-03-04');
 INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04', '2010-03-04');
 
-INSERT INTO causes VALUES (1, 'Dogs cause', 'Cause related to help homeless dogs', 2000, 'Arca de Noé', false);
-INSERT INTO causes VALUES (2, 'Cats cause', 'Cause related to help homeless cats', 1000, 'Refugio La Candela', true);
+INSERT INTO causes(id,name,description,budget_target,organization,closed) VALUES (1, 'Dogs cause', 'Cause related to help homeless dogs', 2000, 'Arca de Noé', false);
+INSERT INTO causes(id,name,description,budget_target,organization,closed) VALUES (2, 'Cats cause', 'Cause related to help homeless cats', 1000, 'Refugio La Candela', true);
 
 INSERT INTO donations VALUES (1, '2019-03-04', 500, 1, 2);
 INSERT INTO donations VALUES (2, '2019-03-14', 500, 2, 2);

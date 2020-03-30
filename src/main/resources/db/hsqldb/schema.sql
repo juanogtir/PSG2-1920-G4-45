@@ -20,7 +20,7 @@ CREATE TABLE causes (
   id         INTEGER IDENTITY PRIMARY KEY,
   name VARCHAR(30),
   description VARCHAR(50),
-  budgetTarget INTEGER,
+  budget_target INTEGER,
   organization VARCHAR(30),
   closed BOOLEAN
 );
