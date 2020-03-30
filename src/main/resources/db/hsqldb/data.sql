@@ -52,8 +52,8 @@ INSERT INTO visits VALUES (2, 8, '2013-01-02', 'vacuna antirrábica');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'castrado');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'esterilizada');
 
-INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04', '2010-03-04');
-INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04', '2010-03-04');
+INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04 10:00:00', '2010-03-04 10:30:00');
+INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04 22:00:00', '2010-03-04 22:30:00');
 
 INSERT INTO causes VALUES (1, 'Dogs cause', 'Cause related to help homeless dogs', 2000, 'Arca de Noé', false);
 INSERT INTO causes VALUES (2, 'Cats cause', 'Cause related to help homeless cats', 1000, 'Refugio La Candela', true);

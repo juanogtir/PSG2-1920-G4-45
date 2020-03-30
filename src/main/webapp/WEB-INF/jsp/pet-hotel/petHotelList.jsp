@@ -24,12 +24,13 @@
             <tr>
                 <td>
                     <c:out value="${petHotel.info}"/>
+
                 </td>
                 <td>
-                    <c:out value="${petHotel.initialDate}"/>
+                    <spring:eval expression="petHotel.initialDate"></spring:eval>
                 </td>
                 <td>
-               		<c:out value="${petHotel.endDate}"/>
+               		<spring:eval expression="petHotel.endDate"></spring:eval>
            		</td>
 
            		 <td>

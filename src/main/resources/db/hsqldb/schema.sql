@@ -12,8 +12,8 @@ CREATE TABLE pet_hotel (
   id         INTEGER IDENTITY PRIMARY KEY,
   pet_id INTEGER,
   info VARCHAR(30),
-  initial_date DATE,
-  end_date DATE
+  initial_date TIMESTAMP,
+  end_date TIMESTAMP
 );
 
 CREATE TABLE causes (

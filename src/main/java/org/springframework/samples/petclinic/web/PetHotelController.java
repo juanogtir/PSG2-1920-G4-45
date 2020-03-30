@@ -1,18 +1,16 @@
 package org.springframework.samples.petclinic.web;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetHotel;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,10 +38,16 @@ public class PetHotelController {
 		return this.clinicService.findPetById(petId);
 	}
 
-
-	@InitBinder("pet")
+	@ModelAttribute("petHotel")
+	public PetHotel loadPetHotelWithPet(@PathVariable("petId") int petId) {
+		PetHotel petHotel = new PetHotel();
+		petHotel.setPet(this.clinicService.findPetById(petId));
+		return petHotel;
+	}
+	
+	@InitBinder("petHotel")
 	public void initPetBinder(WebDataBinder dataBinder) {
-		dataBinder.setValidator(new PetValidator());
+		dataBinder.setValidator(new PetHotelValidator());
 	}
 	
 	@GetMapping(value = "/new")
@@ -60,8 +64,19 @@ public class PetHotelController {
 		if (result.hasErrors()) {
 			model.put("petHotel", petHotel);
 			return VIEWS_PETHOTEL_CREATE_FORM;
-		}
-		else {
+		} 
+		
+		Pet mascota = petHotel.getPet();
+		Collection<PetHotel> citas = this.clinicService.findPetHotelsByPetId(mascota.getId());
+		boolean noCoincide = citas.stream()
+				.allMatch(c->(c.getInitialDate().compareTo(petHotel.getEndDate())>0)
+				|| (c.getEndDate().compareTo(petHotel.getInitialDate())<0));
+		
+		if (!noCoincide) {
+			result.rejectValue("endDate", "invalid", "La mascota ya tiene una reserva que coincide con la franja horaria indicada");			
+			return VIEWS_PETHOTEL_CREATE_FORM;
+			
+		} else {
 			petHotel.setPet(pet);
 			this.clinicService.savePetHotel(petHotel);
 			return "redirect:/owners/{ownerId}/pets/{petId}/pet-hotels/list";
@@ -71,7 +86,6 @@ public class PetHotelController {
 	@GetMapping(value = "/list")
 	public String listPetHotels(@PathVariable int petId, Map<String, Object> model) {
 		model.put("petHotels", this.clinicService.findPetHotelsByPetId(petId));
-		List<PetHotel> p = this.clinicService.findPetHotelsByPetId(petId);
 		return "pet-hotel/petHotelList";
 	}
 
@@ -81,7 +95,6 @@ public class PetHotelController {
 	public String borrarPetHotel(@PathVariable("petHotelId") int petHotelId,@PathVariable("ownerId") int ownerId,
 			@PathVariable("petId") int petId, ModelMap modelMap) {
 		String view = "redirect:/owners/{ownerId}/pets/{petId}/pet-hotels/list";
-		Pet pet = findPet(petId);
 		PetHotel petHotel = this.clinicService.findPetHotelById(petHotelId);
 		 if(petHotel!=null) {
 			 this.clinicService.removePetHotel(petHotel);	

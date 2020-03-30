@@ -9,12 +9,12 @@
 <petclinic:layout pageName="pet-hotel">
     <h2>
         Hotel de mascotas
-    </h2>
+    </h2><br/>
     <form:form modelAttribute="petHotel" class="form-horizontal" id="add-petHotel-form">
         <div class="form-group has-feedback">
             <petclinic:inputField label="Info" name="info"/>
-            <petclinic:inputField label="Fecha de inicio" name="initialDate"/>
-            <petclinic:inputField label="Fecha de fin" name="endDate"/>
+            <petclinic:inputDateTimeField label="Feha de inicio" name="initialDate" /> 
+            <petclinic:inputDateTimeField label="Feha de fin" name="endDate" /> 
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
