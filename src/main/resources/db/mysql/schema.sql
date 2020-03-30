@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS pet_hotel (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   pet_id INT(4) UNSIGNED NOT NULL,
   info VARCHAR(30),
-  initial_date DATE,
-  end_date DATE,
+  initial_date TIMESTAMP,
+  end_date TIMESTAMP,
   FOREIGN KEY (pet_id) REFERENCES pets(id)
 ) engine=InnoDB;
 

@@ -67,12 +67,8 @@ public class ClinicService {
 	private VisitRepository visitRepository;
 	
 	private SpringDataPetRepository dataPetRepository;
-	
-	private SpringDataVisitRepository dataVisitRepository;
   
 	private PetHotelRepository petHotelRepository;
-
-
 
 
 	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final SpecialtyRepository specialtyRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository,
@@ -205,11 +201,8 @@ public class ClinicService {
 	public List<PetHotel> findPetHotelsByPetId(int id) throws DataAccessException {
 		return petHotelRepository.findPetHotelsByPetId(id);
 	}
-
-
-	
     
-  @Transactional(readOnly = true)
+	@Transactional(readOnly = true)
 	public Visit findVisitById(int id) throws DataAccessException {
 		return visitRepository.findById(id).get();
 	}
