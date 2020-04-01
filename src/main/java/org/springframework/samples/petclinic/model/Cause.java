@@ -16,8 +16,15 @@
 
 package org.springframework.samples.petclinic.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
@@ -28,9 +35,13 @@ import org.springframework.samples.petclinic.repository.CauseRepository;
 import org.springframework.samples.petclinic.service.CauseService;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Data
+@Getter
+@Setter
 @Table(name = "causes")
 public class Cause extends BaseEntity {
 
@@ -57,4 +68,7 @@ public class Cause extends BaseEntity {
 	
 	@Transient
 	private Integer totalAmountOfDonations;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause", fetch = FetchType.EAGER)
+	private List<Donation> donations;
 }

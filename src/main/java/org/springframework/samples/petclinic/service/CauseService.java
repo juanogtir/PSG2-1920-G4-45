@@ -35,7 +35,7 @@ public class CauseService {
 		return this.causeRepo.findAll();
 	}
 	
-	@Transactional(readOnly=true)
+	@Transactional
 	public Integer totalAmountOfDonationsForCause(Integer causeId){
 		return causeRepo.totalAmountOfDonationsForCause(causeId);
 	}
