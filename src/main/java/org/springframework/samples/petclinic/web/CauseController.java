@@ -103,6 +103,15 @@ public class CauseController {
 //		return causes;
 //	}
 
+	@GetMapping("/causes/{causeId}")
+	public ModelAndView showCause(@PathVariable("causeId") int causeId) {
+		ModelAndView mav = new ModelAndView("causes/causeDetails");
+		Cause cause = this.causeService.findCausebyId(causeId);
+		Integer total = this.causeService.totalAmountOfDonationsForCause(causeId);
+		cause.setTotalAmountOfDonations(total);
+		mav.addObject(cause);
+		return mav;
+	}
 
 
 }

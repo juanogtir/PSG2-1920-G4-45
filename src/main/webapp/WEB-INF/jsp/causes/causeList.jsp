@@ -20,11 +20,11 @@
 		<tbody>
 			<c:forEach items="${causes}" var="cause">
 				<tr>
-					<!-- <td><spring:url value="/causes/{causeId}" var="causeUrl">
+					<td><spring:url value="/causes/{causeId}" var="causeUrl">
 							<spring:param name="causeId" value="${cause.id}" />
 						</spring:url>
 						<a href="${fn:escapeXml(causeUrl)}"> <c:out value="${cause.name}" /></a>
-					</td> -->
+					</td>
 					<td>
 						<c:out value="${cause.name}" />
 					</td>
