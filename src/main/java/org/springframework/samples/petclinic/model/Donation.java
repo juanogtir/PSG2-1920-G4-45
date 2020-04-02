@@ -36,7 +36,7 @@ import lombok.Data;
 public class Donation extends BaseEntity {
 
 	@Column(name = "donation_date")
-	@NotNull
+	//@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date	donationDate;
 
@@ -52,6 +52,6 @@ public class Donation extends BaseEntity {
 
 	@JoinColumn(name = "cause_id")
 	@ManyToOne
-	@NotNull
+	//@NotNull
 	private Cause	cause;
 }

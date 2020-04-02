@@ -11,23 +11,23 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Nombre</th>
+            <th>Name</th>
             <td><b><c:out value="${cause.name}"/></b></td>
         </tr>
         <tr>
-            <th>Descripción</th>
+            <th>Description</th>
             <td><c:out value="${cause.description}"/></td>
         </tr>
         <tr>
-            <th>Objetivo</th>
+            <th>Budget target</th>
             <td><c:out value="${cause.budgetTarget}"/></td>
         </tr>
         <tr>
-            <th>Organización</th>
+            <th>Organization</th>
             <td><c:out value="${cause.organization}"/></td>
         </tr>
          <tr>
-            <th>Recaudación total de donaciones</th>
+            <th>Total amount of donations</th>
             <td><c:choose>
             <c:when test="${cause.totalAmountOfDonations!=null}">
                 <c:out value="${cause.totalAmountOfDonations}"/>
@@ -38,10 +38,10 @@
         </c:choose></td>
         </tr>
          <tr>
-            <th>Cerrado</th>
+            <th>Closed</th>
             <td><c:choose>
             <c:when test="${cause.closed==true}">
-                Sí
+                Yes
             </c:when>
             <c:otherwise>
              	No
@@ -56,11 +56,11 @@
             <tr>
                 <td valign="top">
                     <dl class="dl-horizontal">
-                        <dt>Fecha de donación</dt>
+                        <dt>Donation date</dt>
                         <dd><c:out value="${donation.donationDate}"/></dd>
-                        <dt>Cantidad</dt>
+                        <dt>Quantity</dt>
                         <dd><c:out value="${donation.donation}"/></dd>
-                        <dt>Cliente</dt>
+                        <dt>Client</dt>
                         <dd><c:out value="${donation.client.firstName} ${donation.client.lastName}"/></dd>
                     </dl>
                 </td>

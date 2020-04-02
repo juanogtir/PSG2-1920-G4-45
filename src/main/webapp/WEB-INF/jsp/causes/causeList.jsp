@@ -6,33 +6,35 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="causes">
-	<h2>Causas</h2>
+	<h2>Causes</h2>
 
 	<table id="causesTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th>Nombre</th>
-				<th>Cantidad total donada</th>
-				<th>Cantidad objetivo</th>
-				<th>Donar</th>
+				<th>Name</th>
+				<th>Total of donations</th>
+				<th>Budget target</th>
+				<th>Donate</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${causes}" var="cause">
+				<spring:url value="/causes/{causeId}/donate" var="createDonation">
+					<spring:param name="causeId" value="${cause.id}" />
+				</spring:url>
 				<tr>
 					<td><spring:url value="/causes/{causeId}" var="causeUrl">
 							<spring:param name="causeId" value="${cause.id}" />
-						</spring:url>
-						<a href="${fn:escapeXml(causeUrl)}"> <c:out value="${cause.name}" /></a>
-					</td>
+						</spring:url> <a href="${fn:escapeXml(causeUrl)}"> <c:out value="${cause.name}" /></a></td>
+					<td><c:if test="${cause.totalAmountOfDonations == null}">0</c:if> <c:if test="${cause.totalAmountOfDonations != null}">
+							<c:out value="${cause.totalAmountOfDonations}" />
+						</c:if></td>
+					<td><c:out value="${cause.budgetTarget}" /></td>
+					
 					<td>
-						<c:out value="${cause.name}" />
-					</td>
-					<td>
-						<c:out value="${cause.totalAmountOfDonations}" />
-					</td>
-					<td>
-						<c:out value="${cause.budgetTarget}" />
+					<c:if test="${cause.closed == false}">
+					<a href="${fn:escapeXml(createDonation)}" class="btn btn-default">Donate</a>
+					</c:if>
 					</td>
 				</tr>
 			</c:forEach>
