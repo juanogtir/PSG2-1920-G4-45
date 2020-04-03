@@ -28,7 +28,7 @@ CREATE TABLE causes (
 CREATE TABLE donations (
   id         INTEGER IDENTITY PRIMARY KEY,
   donation_date DATE,
-  donation INTEGER,
+  amount INTEGER,
   client_id    INTEGER NOT NULL,
   cause_id    INTEGER NOT NULL
 );

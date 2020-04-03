@@ -16,10 +16,8 @@
 
 package org.springframework.samples.petclinic.repository;
 
-import java.util.Collection;
-
-import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.Cause;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.samples.petclinic.model.Donation;
 
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant
@@ -32,26 +30,14 @@ import org.springframework.samples.petclinic.model.Cause;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface CauseRepository {
+public interface DonationRepository extends CrudRepository<Donation, Integer> {
 
-	/**
-	 * Retrieve all <code>Vet</code>s from the data store.
-	 *
-	 * @return a <code>Collection</code> of <code>Vet</code>s
+	/*
+	 * Collection<Donation> findAll() throws DataAccessException;
+	 * 
+	 * Donation findById(int id) throws DataAccessException;
+	 * 
+	 * //@Transactional
+	 * void save(Donation donation) throws DataAccessException;
 	 */
-	Collection<Cause> findAll() throws DataAccessException;
-
-	/**
-	 * Retrieve a <code>Vet</code> from the data store by id.
-	 *
-	 * @param id
-	 *            the id to search for
-	 * @return the <code>Vet</code> if found
-	 * @throws org.springframework.dao.DataRetrievalFailureException
-	 *             if not found
-	 */
-	Cause findById(int id) throws DataAccessException;
-
-	//Integer totalAmountOfDonationsForCause(Integer causeId) throws DataAccessException;
-
 }

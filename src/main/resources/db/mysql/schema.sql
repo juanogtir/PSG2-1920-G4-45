@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS donations (
   client_id INT(4) UNSIGNED NOT NULL,
   cause_id INT(4) UNSIGNED NOT NULL,
   donation_date DATE,
-  donation INTEGER,
+  amount INTEGER,
   FOREIGN KEY (client_id) REFERENCES owners(id)
   FOREIGN KEY (cause_id) REFERENCES causes(id)
 ) engine=InnoDB;
