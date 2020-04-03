@@ -54,9 +54,9 @@
 						<dd>
 							<c:out value="${donation.donationDate}" />
 						</dd>
-						<dt>Quantity</dt>
+						<dt>Amount</dt>
 						<dd>
-							<c:out value="${donation.donation}" />
+							<c:out value="${donation.amount}" />
 						</dd>
 						<dt>Client</dt>
 						<dd>

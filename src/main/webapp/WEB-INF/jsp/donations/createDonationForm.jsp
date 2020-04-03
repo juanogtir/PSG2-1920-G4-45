@@ -13,7 +13,7 @@
 
 	<form:form modelAttribute="donation" class="form-horizontal" id="add-donation-form">
 		<div class="form-group has-feedback">
-			<petclinic:inputField label="Quantity" name="donation" />
+			<petclinic:inputField label="Amount" name="amount" />
 			
 			<petclinic:selectField label="Owner" name="client" size="5" names="${owners}" />
 		</div>

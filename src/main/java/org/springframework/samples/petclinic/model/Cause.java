@@ -66,7 +66,7 @@ public class Cause extends BaseEntity {
 	public Integer getTotalAmountOfDonations() {
 		Integer totalAmountOfDonations = 0;
 		for (Donation donation : this.getDonations()) {
-			totalAmountOfDonations += donation.getDonation();
+			totalAmountOfDonations += donation.getAmount();
 		}
 		return totalAmountOfDonations;
 	}

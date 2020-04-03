@@ -40,10 +40,10 @@ public class Donation extends BaseEntity {
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate	donationDate;
 
-	@Column(name = "donation")
+	@Column(name = "amount")
 	@NotNull
 	@Min(0)
-	private Integer		donation;
+	private Integer		amount;
 
 	@JoinColumn(name = "client_id")
 	@ManyToOne

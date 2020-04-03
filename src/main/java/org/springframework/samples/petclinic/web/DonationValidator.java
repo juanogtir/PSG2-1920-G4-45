@@ -10,9 +10,9 @@ public class DonationValidator implements Validator {
 	@Override
 	public void validate(final Object obj, final Errors errors) {
 		Donation donation = (Donation) obj;
-		if (donation.getDonation() == null || donation.getClient() == null) {
-			if (donation.getDonation() == null) {
-				errors.rejectValue("Quantity", "invalidDonation", "Must be filled");
+		if (donation.getAmount() == null || donation.getClient() == null) {
+			if (donation.getAmount() == null) {
+				errors.rejectValue("amount", "invalidDonation", "Must be filled");
 			}
 
 			if (donation.getClient() == null) {
