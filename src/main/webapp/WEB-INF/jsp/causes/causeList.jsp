@@ -6,15 +6,15 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="causes">
-	<h2>Causes</h2>
+	<h2>Causas</h2>
 
 	<table id="causesTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Total of donations</th>
-				<th>Budget target</th>
-				<th>Donate</th>
+				<th>Nombre</th>
+				<th>Total Donado</th>
+				<th>Cantidad Objetivo</th>
+				<th>Donar</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,9 +29,16 @@
 					<td><c:out value="${cause.totalAmountOfDonations}" /></td>
 					<td><c:out value="${cause.budgetTarget}" /></td>
 
-					<td><c:if test="${cause.closed == false}">
-							<a href="${fn:escapeXml(createDonation)}" class="btn btn-default">Donate</a>
-						</c:if></td>
+					<td>
+					<c:choose>
+					<c:when test="${cause.closed == false}">
+					<a href="${fn:escapeXml(createDonation)}" class="btn btn-default">Donar</a>
+					</c:when>
+					<c:otherwise>
+					Se ha llegado a la cantidad objetivo
+					</c:otherwise>
+					</c:choose>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

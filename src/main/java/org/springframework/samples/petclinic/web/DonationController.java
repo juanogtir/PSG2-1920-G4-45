@@ -31,6 +31,7 @@ import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -80,13 +81,28 @@ public class DonationController {
 
 	@PostMapping(value = "/causes/{causeId}/donate")
 	public String processCreationForm(@PathVariable("causeId") final int causeId, @Valid final Donation donation, final BindingResult result, final ModelMap model) {
+		Cause cause = this.causeService.findCausebyId(causeId);
+		Integer totalActual = 0;
+		if(!cause.getDonations().isEmpty()) {
+			totalActual = cause.getDonations().stream().mapToInt(x->x.getAmount()).sum();
+		}
+		
+		if(donation.getAmount() != null) {
+		if(totalActual + donation.getAmount() > cause.getBudgetTarget()) {
+		FieldError fe = new FieldError("amount", "amount", "La cantidad insertada supera la cantidad restante posible. Total restante: "+ (cause.getBudgetTarget()-totalActual));
+		result.addError(fe);
+		}else if(totalActual + donation.getAmount() == cause.getBudgetTarget()) {
+			cause.setClosed(true);
+		}
+		} 
+		
 		if (result.hasErrors()) {
 			this.insertOwners(model, donation, causeId);
 			model.put("donation", donation);
 			return DonationController.VIEWS_DONATION_CREATE_FORM;
 		} else {
 			LocalDate donationDate = LocalDate.now();
-			Cause cause = this.causeService.findCausebyId(causeId);
+			
 			donation.setDonationDate(donationDate);
 			donation.setCause(cause);
 			//cause.getDonations().add(donation);

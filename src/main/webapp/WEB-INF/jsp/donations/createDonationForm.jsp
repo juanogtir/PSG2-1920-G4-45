@@ -10,17 +10,17 @@
 	<h2>
 		Donation
 	</h2>
-
+	
 	<form:form modelAttribute="donation" class="form-horizontal" id="add-donation-form">
 		<div class="form-group has-feedback">
-			<petclinic:inputField label="Amount" name="amount" />
+			<petclinic:inputField label="Cantidad" name="amount" />
 			
-			<petclinic:selectField label="Owner" name="client" size="5" names="${owners}" />
+			<petclinic:selectField label="Cliente" name="client" size="5" names="${owners}" />
 		</div>
 		<div class="form-group">
 			
 			<div class="col-sm-offset-2 col-sm-10">
-                            <button class="btn btn-default" type="submit">Donate</button>
+                            <button class="btn btn-default" type="submit">Donar</button>
 			</div>
 		</div>
 	</form:form>
