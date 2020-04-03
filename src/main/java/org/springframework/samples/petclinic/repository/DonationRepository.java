@@ -16,9 +16,7 @@
 
 package org.springframework.samples.petclinic.repository;
 
-import java.util.Collection;
-
-import org.springframework.dao.DataAccessException;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.Donation;
 
 /**
@@ -32,12 +30,14 @@ import org.springframework.samples.petclinic.model.Donation;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface DonationRepository {
+public interface DonationRepository extends CrudRepository<Donation, Integer> {
 
-	Collection<Donation> findAll() throws DataAccessException;
-
-	Donation findById(int id) throws DataAccessException;
-
-	//@Transactional
-	void save(Donation donation) throws DataAccessException;
+	/*
+	 * Collection<Donation> findAll() throws DataAccessException;
+	 * 
+	 * Donation findById(int id) throws DataAccessException;
+	 * 
+	 * //@Transactional
+	 * void save(Donation donation) throws DataAccessException;
+	 */
 }

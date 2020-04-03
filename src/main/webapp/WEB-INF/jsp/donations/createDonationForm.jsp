@@ -18,7 +18,7 @@
 			<petclinic:selectField label="Owner" name="client" size="5" names="${owners}" />
 		</div>
 		<div class="form-group">
-			<input type="hidden" name="id" value="${donation.id}" />
+			
 			<div class="col-sm-offset-2 col-sm-10">
                             <button class="btn btn-default" type="submit">Donate</button>
 			</div>

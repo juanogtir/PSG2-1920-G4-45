@@ -16,7 +16,7 @@
 
 package org.springframework.samples.petclinic.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,21 +37,21 @@ public class Donation extends BaseEntity {
 
 	@Column(name = "donation_date")
 	//@NotNull
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date	donationDate;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private LocalDate	donationDate;
 
 	@Column(name = "donation")
 	@NotNull
 	@Min(0)
-	private Integer	donation;
+	private Integer		donation;
 
 	@JoinColumn(name = "client_id")
 	@ManyToOne
 	@NotNull
-	private Owner	client;
+	private Owner		client;
 
 	@JoinColumn(name = "cause_id")
 	@ManyToOne
 	//@NotNull
-	private Cause	cause;
+	private Cause		cause;
 }

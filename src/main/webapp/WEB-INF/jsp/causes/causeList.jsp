@@ -26,16 +26,12 @@
 					<td><spring:url value="/causes/{causeId}" var="causeUrl">
 							<spring:param name="causeId" value="${cause.id}" />
 						</spring:url> <a href="${fn:escapeXml(causeUrl)}"> <c:out value="${cause.name}" /></a></td>
-					<td><c:if test="${cause.totalAmountOfDonations == null}">0</c:if> <c:if test="${cause.totalAmountOfDonations != null}">
-							<c:out value="${cause.totalAmountOfDonations}" />
-						</c:if></td>
+					<td><c:out value="${cause.totalAmountOfDonations}" /></td>
 					<td><c:out value="${cause.budgetTarget}" /></td>
-					
-					<td>
-					<c:if test="${cause.closed == false}">
-					<a href="${fn:escapeXml(createDonation)}" class="btn btn-default">Donate</a>
-					</c:if>
-					</td>
+
+					<td><c:if test="${cause.closed == false}">
+							<a href="${fn:escapeXml(createDonation)}" class="btn btn-default">Donate</a>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 		</tbody>

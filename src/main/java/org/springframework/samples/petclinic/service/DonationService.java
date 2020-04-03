@@ -1,8 +1,9 @@
 
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Cause;
@@ -24,14 +25,22 @@ public class DonationService {
 	private OwnerRepository		ownerRepository;
 
 
+	@Autowired
+	public DonationService(final DonationRepository donationRepository, final CauseRepository causeRepository, final OwnerRepository ownerRepository) {
+
+		this.donationRepository = donationRepository;
+		this.causeRepository = causeRepository;
+		this.ownerRepository = ownerRepository;
+	}
+
 	@Transactional(readOnly = true)
-	public Donation findDonationbyId(final int id) {
+	public Optional<Donation> findDonationbyId(final int id) {
 		return this.donationRepository.findById(id);
 	}
 
 	@Transactional(readOnly = true)
 	@Cacheable(value = "donations")
-	public Collection<Donation> findDonations() throws DataAccessException {
+	public Iterable<Donation> findDonations() throws DataAccessException {
 		return this.donationRepository.findAll();
 	}
 

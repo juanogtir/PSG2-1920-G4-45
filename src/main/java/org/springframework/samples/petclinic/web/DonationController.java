@@ -16,8 +16,7 @@
 
 package org.springframework.samples.petclinic.web;
 
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -32,7 +31,9 @@ import org.springframework.samples.petclinic.service.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -64,7 +65,7 @@ public class DonationController {
 		this.causeService = causeService;
 	}
 
-	public void insertData(final Map<String, Object> model, final Donation donation) {
+	public void insertOwners(final Map<String, Object> model, final Donation donation, final int causeId) {
 		Iterable<Owner> owners = this.ownerService.findAll();
 		model.put("owners", owners);
 	}
@@ -72,31 +73,32 @@ public class DonationController {
 	@GetMapping(value = "/causes/{causeId}/donate")
 	public String initCreationForm(@PathVariable("causeId") final int causeId, final ModelMap model) {
 		Donation donation = new Donation();
-		this.insertData(model, donation);
+		this.insertOwners(model, donation, causeId);
 		model.put("donation", donation);
 		return DonationController.VIEWS_DONATION_CREATE_FORM;
 	}
 
 	@PostMapping(value = "/causes/{causeId}/donate")
 	public String processCreationForm(@PathVariable("causeId") final int causeId, @Valid final Donation donation, final BindingResult result, final ModelMap model) {
-		Date donationDate = Date.from(Instant.now());
-		Cause cause = this.causeService.findCausebyId(causeId);
-		donation.setDonationDate(donationDate);
-		donation.setCause(cause);
 		if (result.hasErrors()) {
-			this.insertData(model, donation);
+			this.insertOwners(model, donation, causeId);
 			model.put("donation", donation);
 			return DonationController.VIEWS_DONATION_CREATE_FORM;
 		} else {
+			LocalDate donationDate = LocalDate.now();
+			Cause cause = this.causeService.findCausebyId(causeId);
+			donation.setDonationDate(donationDate);
+			donation.setCause(cause);
 			//cause.getDonations().add(donation);
-			//			try {
 			this.donationService.saveDonation(donation);
-			//			} catch (Exception e) {
-			//				e.printStackTrace();
-			//			}
 
 			return "redirect:/causes/" + causeId;
 		}
+	}
+
+	@InitBinder("donation")
+	public void initPetBinder(final WebDataBinder dataBinder) {
+		dataBinder.setValidator(new DonationValidator());
 	}
 
 }

@@ -22,17 +22,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.samples.petclinic.repository.CauseRepository;
-import org.springframework.samples.petclinic.service.CauseService;
 
 import lombok.Data;
 import lombok.Getter;
@@ -65,10 +59,19 @@ public class Cause extends BaseEntity {
 	@Column(name = "closed")
 	@NotNull
 	private Boolean	closed;
-	
-	@Transient
-	private Integer totalAmountOfDonations;
-	
+
+
+	//@Transient
+	//private Integer totalAmountOfDonations;
+	public Integer getTotalAmountOfDonations() {
+		Integer totalAmountOfDonations = 0;
+		for (Donation donation : this.getDonations()) {
+			totalAmountOfDonations += donation.getDonation();
+		}
+		return totalAmountOfDonations;
+	}
+
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause", fetch = FetchType.EAGER)
 	private List<Donation> donations;
 }
