@@ -38,7 +38,7 @@ public class CauseController {
 	private final CauseService causeService;
 
 	//	private static final String	VIEWS_CAUSE_CREATE_OR_UPDATE_FORM	= "causes/createOrUpdateCauseForm";
-	
+
 
 	public CauseController(final CauseService causeService) {
 		this.causeService = causeService;
@@ -60,7 +60,7 @@ public class CauseController {
 		return "causes/causeList";
 	}
 
-//	@GetMapping(value = {
+    //	@GetMapping(value = {
 	//		"/causes.xml"
 	//	})
 	//	public @ResponseBody Collection<Cause> showResourcesCauseList() {
