@@ -26,7 +26,7 @@ public class CauseService {
 	public Cause findCausebyId(final int id) {
 		return this.causeRepo.findById(id);
 	}
-	
+
 	@Transactional(readOnly = true)
 	@Cacheable(value = "causes")
 	public Collection<Cause> findCauses() throws DataAccessException {
@@ -37,5 +37,5 @@ public class CauseService {
 	//public Integer totalAmountOfDonationsForCause(Integer causeId){
 	//	return causeRepo.totalAmountOfDonationsForCause(causeId);
 	//}
-	
+
 }
