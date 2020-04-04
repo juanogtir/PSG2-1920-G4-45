@@ -12,28 +12,33 @@
 		<thead>
 			<tr>
 				<th>Nombre</th>
-				<th>Cantidad total donada</th>
-				<th>Cantidad objetivo</th>
+				<th>Total Donado</th>
+				<th>Cantidad Objetivo</th>
 				<th>Donar</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${causes}" var="cause">
+				<spring:url value="/causes/{causeId}/donate" var="createDonation">
+					<spring:param name="causeId" value="${cause.id}" />
+				</spring:url>
 				<tr>
-					<!-- <td><spring:url value="/causes/{causeId}" var="causeUrl">
+					<td><spring:url value="/causes/{causeId}" var="causeUrl">
 							<spring:param name="causeId" value="${cause.id}" />
-						</spring:url>
-						<a href="${fn:escapeXml(causeUrl)}"> <c:out value="${cause.name}" /></a>
-					</td> -->
+						</spring:url> <a href="${fn:escapeXml(causeUrl)}"> <c:out value="${cause.name}" /></a></td>
+					<td><c:out value="${cause.totalAmountOfDonations}" /></td>
+					<td><c:out value="${cause.budgetTarget}" /></td>
+
 					<td>
-						<c:out value="${cause.name}" />
-					</td>
-					<td>
-						<c:out value="${cause.totalAmountOfDonations}" />
-					</td>
-					<td>
-						<c:out value="${cause.budgetTarget}" />
-					</td>
+					<c:choose>
+					<c:when test="${cause.closed == false}">
+					<a href="${fn:escapeXml(createDonation)}" class="btn btn-default">Donar</a>
+					</c:when>
+					<c:otherwise>
+					Se ha llegado a la cantidad objetivo
+					</c:otherwise>
+					</c:choose>
+					
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -44,7 +49,7 @@
 		<tr>
 			<td><a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a></td>
 			<td>
-            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir veterinario</a>
+            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>AÃ±adir veterinario</a>
             </td>
 		</tr>
 	</table> -->
