@@ -60,7 +60,7 @@ public class CauseController {
 		return "causes/causeList";
 	}
 
-    //	@GetMapping(value = {
+	//	@GetMapping(value = {
 	//		"/causes.xml"
 	//	})
 	//	public @ResponseBody Collection<Cause> showResourcesCauseList() {
