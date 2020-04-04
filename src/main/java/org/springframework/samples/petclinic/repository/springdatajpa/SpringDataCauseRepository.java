@@ -36,7 +36,7 @@ public interface SpringDataCauseRepository extends CauseRepository, Repository<C
 	@Override
 	@Query("SELECT cause FROM Cause cause WHERE cause.id =:id")
 	Cause findById(@Param("id") int id);
-	
+
 	//@Override
 	//@Query("SELECT SUM(donation.donation) FROM Donation donation WHERE donation.cause.id=:causeId")
 	//Integer totalAmountOfDonationsForCause(Integer causeId) throws DataAccessException;
