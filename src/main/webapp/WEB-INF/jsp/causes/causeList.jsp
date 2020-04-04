@@ -49,7 +49,7 @@
 		<tr>
 			<td><a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a></td>
 			<td>
-            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Añadir veterinario</a>
+            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>AÃ±adir veterinario</a>
             </td>
 		</tr>
 	</table> -->

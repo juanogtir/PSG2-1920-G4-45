@@ -16,13 +16,14 @@
 
 package org.springframework.samples.petclinic.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -36,22 +37,22 @@ import lombok.Data;
 public class Donation extends BaseEntity {
 
 	@Column(name = "donation_date")
-	@NotNull
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date	donationDate;
+	//@NotNull
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private LocalDate	donationDate;
 
-	@Column(name = "donation")
+	@Column(name = "amount")
 	@NotNull
 	@Min(0)
-	private Integer	donation;
+	private Integer		amount;
 
 	@JoinColumn(name = "client_id")
 	@ManyToOne
 	@NotNull
-	private Owner	client;
-
+	private Owner		client;
+	
+	@NotNull
 	@JoinColumn(name = "cause_id")
 	@ManyToOne
-	@NotNull
-	private Cause	cause;
+	private Cause		cause;
 }

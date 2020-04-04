@@ -12,8 +12,8 @@ CREATE TABLE pet_hotel (
   id         INTEGER IDENTITY PRIMARY KEY,
   pet_id INTEGER,
   info VARCHAR(30),
-  initial_date DATE,
-  end_date DATE
+  initial_date TIMESTAMP,
+  end_date TIMESTAMP
 );
 
 CREATE TABLE causes (
@@ -28,7 +28,7 @@ CREATE TABLE causes (
 CREATE TABLE donations (
   id         INTEGER IDENTITY PRIMARY KEY,
   donation_date DATE,
-  donation INTEGER,
+  amount INTEGER,
   client_id    INTEGER NOT NULL,
   cause_id    INTEGER NOT NULL
 );
