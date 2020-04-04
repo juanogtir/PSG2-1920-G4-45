@@ -52,6 +52,7 @@ public class Cause extends BaseEntity {
 	@NotNull
 	private Boolean	closed;
 
+    
 	//@Transient
 	//private Integer totalAmountOfDonations;
 	public Integer getTotalAmountOfDonations() {
