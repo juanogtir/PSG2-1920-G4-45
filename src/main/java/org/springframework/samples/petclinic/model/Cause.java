@@ -52,6 +52,17 @@ public class Cause extends BaseEntity {
 	@NotNull
 	private Boolean	closed;
 
-	@Transient
-	private Integer totalAmountOfDonations;
+	//@Transient
+	//private Integer totalAmountOfDonations;
+	public Integer getTotalAmountOfDonations() {
+		Integer totalAmountOfDonations = 0;
+		for (Donation donation : this.getDonations()) {
+			totalAmountOfDonations += donation.getAmount();
+		}
+		return totalAmountOfDonations;
+	}
+
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause", fetch = FetchType.EAGER)
+	private List<Donation> donations;
 }
