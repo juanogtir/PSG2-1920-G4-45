@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Cause;
+
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant
  * with Spring Data naming conventions so this interface can easily be extended for Spring
