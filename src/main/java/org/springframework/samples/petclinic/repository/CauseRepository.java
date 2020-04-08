@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Cause;
+import org.springframework.samples.petclinic.model.Vet;
 
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant
@@ -51,6 +52,8 @@ public interface CauseRepository {
 	 *             if not found
 	 */
 	Cause findById(int id) throws DataAccessException;
+	
+	void save(Cause cause) throws DataAccessException;
 
 	//Integer totalAmountOfDonationsForCause(Integer causeId) throws DataAccessException;
 

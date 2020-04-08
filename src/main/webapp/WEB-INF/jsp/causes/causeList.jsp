@@ -45,13 +45,13 @@
 	</table>
 
 
-	<!-- <table class="table-buttons">
+	<table class="table-buttons">
 		<tr>
-			<td><a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a></td>
+			<!-- <td><a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a></td> -->
 			<td>
-            	<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>AÃ±adir veterinario</a>
+            	<a class="btn btn-default" href='<spring:url value="/causes/new" htmlEscape="true"/>'>Nueva Causa</a>
             </td>
 		</tr>
-	</table> -->
+	</table>
 
 </petclinic:layout>

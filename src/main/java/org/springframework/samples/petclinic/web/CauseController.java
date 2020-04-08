@@ -16,14 +16,23 @@
 
 package org.springframework.samples.petclinic.web;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.samples.petclinic.model.Cause;
+import org.springframework.samples.petclinic.model.Donation;
+import org.springframework.samples.petclinic.model.Specialty;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.service.CauseService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -58,6 +67,31 @@ public class CauseController {
 		//}
 		model.put("causes", causes);
 		return "causes/causeList";
+	}
+	
+	@GetMapping(value = { "/causes/new" })
+	public String createCause(final ModelMap modelMap) {
+		String view = "causes/createCauseForm";
+		Cause cause = new Cause();
+		cause.setDonations(new ArrayList<Donation>());
+		cause.setClosed(false);
+		modelMap.addAttribute("cause", cause);
+		return view;
+	}
+	
+	@PostMapping(value = { "/causes/new" })
+	public String saveCause(@Valid final Cause cause, final BindingResult result, final Map<String, Object> modelMap) {
+		String view = "causes/causeList";
+		if(result.hasErrors()) {
+			modelMap.put("cause", cause);
+			return "causes/createCauseForm";
+		}
+		cause.setDonations(new ArrayList<Donation>());
+		cause.setClosed(false);
+		causeService.saveCause(cause);
+		modelMap.put("message", "Cause successfully saved!");
+		view=showCauseList(modelMap);
+		return view;
 	}
 
 	//	@GetMapping(value = {
