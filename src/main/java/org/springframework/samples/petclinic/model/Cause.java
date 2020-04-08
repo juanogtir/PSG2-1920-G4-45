@@ -58,9 +58,11 @@ public class Cause extends BaseEntity {
 	private String	organization;
 
 	@Column(name = "closed")
-	@NotNull
 	private Boolean	closed;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause", fetch = FetchType.EAGER)
+	private List<Donation> donations;
+	
 
 	//@Transient
 	//private Integer totalAmountOfDonations;
@@ -71,8 +73,4 @@ public class Cause extends BaseEntity {
 		}
 		return totalAmountOfDonations;
 	}
-
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause", fetch = FetchType.EAGER)
-	private List<Donation> donations;
 }
