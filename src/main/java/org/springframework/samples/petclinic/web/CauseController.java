@@ -89,14 +89,6 @@ public class CauseController {
 		cause.setDonations(new ArrayList<Donation>());
 		cause.setClosed(false);
 		causeService.saveCause(cause);
-		System.out.println("Id: "+cause.getId());
-		System.out.println("Nombre: "+cause.getName());
-		System.out.println("Descripción: "+cause.getDescription());
-		System.out.println("Organización: "+cause.getOrganization());
-		System.out.println("Cantidad Objetivo: "+cause.getBudgetTarget());
-		System.out.println("Donaciones: "+cause.getDonations());
-		System.out.println("Cantidad total de donaciones: "+cause.getTotalAmountOfDonations());
-		System.out.println("¿Está cerrada?: "+cause.getClosed());
 		modelMap.put("message", "Cause successfully saved!");
 		view=showCauseList(modelMap);
 		return view;
