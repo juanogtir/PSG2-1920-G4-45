@@ -43,8 +43,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | 29-03-2020    | -              | -              | -              | -              | -              |
 | 30-03-2020    | :neutral_face: | -              | :smiley:       | :smiley:       | :smiley:       |
 | 31-03-2020    | -              | -              | -              | -              | -              |
-| 01-04-2020    | -              | -              | -              | -              | -              |
-| 02-04-2020    | -              | -              | :neutral_face: | -              | -              |
+| 01-04-2020    | -              | -              | -              | -              | :smiley:       |
+| 02-04-2020    | -              | -              | :neutral_face: | -              | :smiley:       |
 | 03-04-2020    | -              | -              | :smiley:       | :neutral_face: | -              |
 | 04-04-2020    | -              | -              | -              | -              | -              |
 | 05-04-2020    | -              | -              | -              | -              | -              |
