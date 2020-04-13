@@ -17,16 +17,11 @@
 package org.springframework.samples.petclinic.repository.springdatajpa;
 
 import org.springframework.context.annotation.Primary;
-
-import java.util.Collection;
-import java.util.List;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.samples.petclinic.model.Specialty;
-import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.model.Cause;
+import org.springframework.samples.petclinic.repository.CauseRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 
 /**
@@ -36,24 +31,14 @@ import org.springframework.samples.petclinic.repository.VetRepository;
  * @since 15.1.2013
  */
 @Primary
-public interface SpringDataVetRepository extends VetRepository, Repository<Vet, Integer> {
+public interface SpringDataCauseRepository extends CauseRepository, Repository<Cause, Integer> {
 
 	@Override
-	@Query("SELECT vet FROM Vet vet WHERE vet.id =:id")
-	Vet findById(@Param("id") int id);
+	@Query("SELECT cause FROM Cause cause WHERE cause.id =:id")
+	Cause findById(@Param("id") int id);
 
-	@Override
-	@Query("SELECT specialty FROM Specialty specialty ORDER BY specialty.name")
-	List<Specialty> findVetSpecialities() throws DataAccessException;
-
-	@Override
-	@Query("SELECT vet from Vet vet join vet.specialties s where s.id=?1")
-	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
-
-	@Override
-	@Modifying
-	@Query("DELETE FROM Vet v WHERE v.id = ?1")
-	void delete(int vetId);
-
+	//@Override
+	//@Query("SELECT SUM(donation.donation) FROM Donation donation WHERE donation.cause.id=:causeId")
+	//Integer totalAmountOfDonationsForCause(Integer causeId) throws DataAccessException;
 
 }

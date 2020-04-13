@@ -52,5 +52,5 @@ INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
 INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
 
-INSERT IGNORE INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04', '2010-03-04');
-INSERT IGNORE INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04', '2010-03-04');
+INSERT IGNORE INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04 10:00:00', '2010-03-04 10:00:00');
+INSERT IGNORE INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04 22:00:00', '2010-03-04 22:30:00');

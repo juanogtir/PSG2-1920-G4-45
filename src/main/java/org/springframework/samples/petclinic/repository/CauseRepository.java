@@ -17,11 +17,9 @@
 package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
-import java.util.List;
+
 import org.springframework.dao.DataAccessException;
-import org.springframework.samples.petclinic.model.BaseEntity;
-import org.springframework.samples.petclinic.model.Specialty;
-import org.springframework.samples.petclinic.model.Vet;
+import org.springframework.samples.petclinic.model.Cause;
 
 /**
  * Repository class for <code>Vet</code> domain objects All method names are compliant
@@ -34,14 +32,14 @@ import org.springframework.samples.petclinic.model.Vet;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface VetRepository {
+public interface CauseRepository {
 
 	/**
 	 * Retrieve all <code>Vet</code>s from the data store.
 	 *
 	 * @return a <code>Collection</code> of <code>Vet</code>s
 	 */
-	Collection<Vet> findAll() throws DataAccessException;
+	Collection<Cause> findAll() throws DataAccessException;
 
 	/**
 	 * Retrieve a <code>Vet</code> from the data store by id.
@@ -52,22 +50,10 @@ public interface VetRepository {
 	 * @throws org.springframework.dao.DataRetrievalFailureException
 	 *             if not found
 	 */
-	Vet findById(int id) throws DataAccessException;
-
-	/**
-	 * Save a <code>Vet</code> to the data store, either inserting or updating it.
-	 *
-	 * @param vet
-	 *            the <code>Vet</code> to save
-	 * @see BaseEntity#isNew
-	 */
-	void save(Vet vet) throws DataAccessException;
+	Cause findById(int id) throws DataAccessException;
 	
-	void delete(int vetId);
+	void save(Cause cause) throws DataAccessException;
 
-	Collection<Vet> findBySpecialtyId(int id) throws DataAccessException;
-
-	List<Specialty> findVetSpecialities() throws DataAccessException;
-
+	//Integer totalAmountOfDonationsForCause(Integer causeId) throws DataAccessException;
 
 }

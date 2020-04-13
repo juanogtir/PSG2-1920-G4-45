@@ -52,5 +52,11 @@ INSERT INTO visits VALUES (2, 8, '2013-01-02', 'vacuna antirrábica');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'castrado');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'esterilizada');
 
-INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04', '2010-03-04');
-INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04', '2010-03-04');
+INSERT INTO pet_hotel VALUES (1, 1, 'info1', '2010-03-04 10:00:00', '2010-03-04 10:30:00');
+INSERT INTO pet_hotel VALUES (2, 1, 'info2', '2010-03-04 22:00:00', '2010-03-04 22:30:00');
+
+INSERT INTO causes(id,name,description,budget_target,organization,closed) VALUES (1, 'Causa para perros', 'Cause relacionada con los perros sin hogar', 2000, 'Arca de Noé', false);
+INSERT INTO causes(id,name,description,budget_target,organization,closed) VALUES (2, 'Causa para gatos', 'Cause relacionada con los gatos sin hogar', 1000, 'Refugio La Candela', true);
+
+INSERT INTO donations(id,donation_date,amount,client_id,cause_id) VALUES (1, '2019-03-04', 500, 1, 2);
+INSERT INTO donations(id,donation_date,amount,client_id,cause_id) VALUES (2, '2019-03-14', 500, 2, 2);

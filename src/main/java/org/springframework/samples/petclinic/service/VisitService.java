@@ -26,7 +26,10 @@ public class VisitService {
 	
 	@Transactional
 	public void delete(final int visitId) {
-		Visit visit = this.visitRepo.findById(visitId).get();
+		Visit visit = new Visit();
+		if(this.visitRepo.findById(visitId).isPresent()) {
+			 visit = this.visitRepo.findById(visitId).get();
+		}
 		this.visitRepo.delete(visit);
 	}
 	

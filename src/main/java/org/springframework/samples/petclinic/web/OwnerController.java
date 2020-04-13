@@ -17,11 +17,7 @@ package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Optional;
-
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.ClinicService;
@@ -44,6 +40,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class OwnerController {
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final String OWNER = "owner";
+	private static final String MESSAGE = "message";
 
 	private final ClinicService clinicService;
 	
@@ -64,7 +62,7 @@ public class OwnerController {
 	@GetMapping(value = "/owners/new")
 	public String initCreationForm(Map<String, Object> model) {
 		Owner owner = new Owner();
-		model.put("owner", owner);
+		model.put(OWNER, owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -81,7 +79,7 @@ public class OwnerController {
 
 	@GetMapping(value = "/owners/find")
 	public String initFindForm(Map<String, Object> model) {
-		model.put("owner", new Owner());
+		model.put(OWNER, new Owner());
 		return "owners/findOwners";
 	}
 
@@ -148,11 +146,11 @@ public class OwnerController {
 	public String salvarDueños(@Valid Owner owner, BindingResult result, ModelMap modelMap) {
 		String view = "owners/listOwners";
 		if(result.hasErrors()) {
-			modelMap.addAttribute("owner",owner);
+			modelMap.addAttribute(OWNER,owner);
 			return "owners/editOwner";
 		}else {
 			ownerService.save(owner);
-			modelMap.addAttribute("message", "Owner succesfully saved!");
+			modelMap.addAttribute(MESSAGE, "Owner succesfully saved!");
 		}
 		return view;
 	}
@@ -167,14 +165,14 @@ public class OwnerController {
 //	
 	
 	@GetMapping(path="/owners/delete/{ownerId}")
-	public String borrarDueño(@PathVariable("ownerId") int ownerId, ModelMap modelMap) {
+	public String borrarDuenio(@PathVariable("ownerId") int ownerId, ModelMap modelMap) {
 		String view = "redirect:/owners";
 		 Owner owner = ownerService.findOwnerbyId(ownerId);
 		 if(owner!=null) {
 			 ownerService.delete(owner);	
-			 modelMap.addAttribute("message","Owner succesfully deleted!");
+			 modelMap.addAttribute(MESSAGE,"Owner succesfully deleted!");
 		 }else {
-			 modelMap.addAttribute("message","Owner not found!");
+			 modelMap.addAttribute(MESSAGE,"Owner not found!");
 		 }
 		 return view;
 	}
