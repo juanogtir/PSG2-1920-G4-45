@@ -34,7 +34,7 @@
 			<th>Cerrada</th>
 			<td><c:choose>
 					<c:when test="${cause.closed==true}">
-                Yes
+                Si
             </c:when>
 					<c:otherwise>
              	No

@@ -1,7 +1,6 @@
 
 package org.springframework.samples.petclinic.web;
 
-import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Donation;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

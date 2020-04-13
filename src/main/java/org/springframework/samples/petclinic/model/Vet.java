@@ -17,12 +17,8 @@
 package org.springframework.samples.petclinic.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -33,10 +29,6 @@ import javax.xml.bind.annotation.XmlElement;
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
-import org.springframework.samples.petclinic.repository.SpecialtyRepository;
-import org.springframework.samples.petclinic.service.ClinicService;
-
-import lombok.Data;
 
 /**
  * Simple JavaBean domain object representing a veterinarian.

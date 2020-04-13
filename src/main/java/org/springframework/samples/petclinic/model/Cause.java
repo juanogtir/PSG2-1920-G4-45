@@ -24,7 +24,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -64,8 +63,6 @@ public class Cause extends BaseEntity {
 	private List<Donation> donations;
 	
 
-	//@Transient
-	//private Integer totalAmountOfDonations;
 	public Integer getTotalAmountOfDonations() {
 		Integer totalAmountOfDonations = 0;
 		for (Donation donation : this.getDonations()) {

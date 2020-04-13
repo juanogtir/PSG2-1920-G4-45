@@ -19,17 +19,9 @@ package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
-
 import javax.validation.Valid;
 
-import org.apache.tomcat.util.http.fileupload.util.Streams;
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
@@ -40,19 +32,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 
 
@@ -68,6 +52,7 @@ public class VetController {
 	private final ClinicService	clinicService;
 
 	private static final String	VIEWS_VET_CREATE_OR_UPDATE_FORM	= "vets/createOrUpdateVetForm";
+	private static final String MESSAGE = "message";
 
 
 	@Autowired
@@ -107,7 +92,7 @@ public class VetController {
 		String view = "vets/vetList";
 		if(result.hasErrors()) {
 			modelMap.put("vet", vet);
-			return "vets/createOrUpdateVetForm";
+			return VIEWS_VET_CREATE_OR_UPDATE_FORM;
 		}
 		else {
 			if(specialties!=null) {
@@ -116,7 +101,7 @@ public class VetController {
 				}
 			}
 			clinicService.saveVet(vet);
-			modelMap.put("message", "Vet successfully saved!");
+			modelMap.put(MESSAGE, "Vet successfully saved!");
 			view=showVetList(modelMap);
 		}
 		return view;
@@ -141,9 +126,9 @@ public class VetController {
 		 Vet vet = this.vetService.findOwnerbyId(vetId);
 		 if(vet!=null) {
 			 this.vetService.removeVet(vet);	
-			 modelMap.addAttribute("message","Vet succesfully deleted!");
+			 modelMap.addAttribute(MESSAGE,"Vet succesfully deleted!");
 		 }else {
-			 modelMap.addAttribute("message","Vet not found!");
+			 modelMap.addAttribute(MESSAGE,"Vet not found!");
 		 }
 		 return view;
 	}

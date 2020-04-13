@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.ClinicService;
+import org.springframework.samples.petclinic.service.OwnerService;
+import org.springframework.samples.petclinic.service.PetService;
+import org.springframework.samples.petclinic.service.VisitService;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
@@ -33,6 +36,15 @@ class VisitControllerTests {
 
 	@MockBean
 	private ClinicService clinicService;
+	
+	@MockBean
+	private OwnerService ownerService;
+	
+	@MockBean
+	private PetService petService;
+	
+	@MockBean
+	private VisitService visitService;
 
 	@Autowired
 	private MockMvc mockMvc;
