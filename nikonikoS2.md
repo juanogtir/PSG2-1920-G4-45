@@ -40,8 +40,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | 26-03-2020    | -              | :worried:      | -              | -              | -              |
 | 27-03-2020    | -              | -              | -              | -              | -              |
 | 28-03-2020    | -              | -              | -              | -              | -              |
-| 29-03-2020    | -              | -              | -              | -              | -              |
-| 30-03-2020    | :neutral_face: | -              | :smiley:       | :smiley:       | :smiley:       |
+| 29-03-2020    | -              | :fearful:      | -              | -              | -              |
+| 30-03-2020    | :neutral_face: | :smiley:       | :smiley:       | :smiley:       | :smiley:       |
 | 31-03-2020    | -              | -              | -              | -              | -              |
 | 01-04-2020    | -              | -              | -              | -              | :smiley:       |
 | 02-04-2020    | -              | -              | :neutral_face: | -              | :smiley:       |
