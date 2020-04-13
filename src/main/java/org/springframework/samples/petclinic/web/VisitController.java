@@ -20,7 +20,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.service.ClinicService;
@@ -110,9 +109,7 @@ public class VisitController {
 		 Pet pet = this.clinicService.findPetById(petId);
 		 Visit visit = this.clinicService.findVisitById(visitId);
 			 pet.removeVisit(visit);
-			// this.clinicService.savePet(pet);
 			 this.visitService.delete(visitId);
-			// modelMap.addAttribute("message","Visit succesfully deleted!");
 		 return view;
 	}
 }

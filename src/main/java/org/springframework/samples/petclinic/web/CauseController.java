@@ -24,8 +24,6 @@ import javax.validation.Valid;
 
 import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Donation;
-import org.springframework.samples.petclinic.model.Specialty;
-import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.service.CauseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

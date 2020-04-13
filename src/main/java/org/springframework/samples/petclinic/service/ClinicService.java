@@ -18,14 +18,12 @@ package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.Valid;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Owner;
@@ -42,8 +40,6 @@ import org.springframework.samples.petclinic.repository.SpecialtyRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataPetRepository;
-import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVetRepository;
-import org.springframework.samples.petclinic.repository.springdatajpa.SpringDataVisitRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -204,17 +200,21 @@ public class ClinicService {
     
 	@Transactional(readOnly = true)
 	public Visit findVisitById(int id) throws DataAccessException {
-		return visitRepository.findById(id).get();
+		Visit v = new Visit();
+		if(visitRepository.findById(id).isPresent()) {
+			v = visitRepository.findById(id).get();
+		}
+		return v; 
 	}
 
 	@Transactional
 	public void removePetHotel(final PetHotel petHotel) throws DataAccessException {
-		this.petHotelRepository.delete(petHotel);;
+		this.petHotelRepository.delete(petHotel);
 	}
 	
 	@Transactional
 	public void removePetVisits(final Pet pet) throws DataAccessException {
 		List<Visit> visitas = pet.getVisits();
-		visitas.removeAll(visitas);
+		visitas.clear();
 	}
 }

@@ -17,11 +17,8 @@ package org.springframework.samples.petclinic.repository.springdatajpa;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.context.annotation.Primary;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.Pet;
@@ -41,10 +38,7 @@ public interface SpringDataPetRepository extends PetRepository, Repository<Pet, 
 	@Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
 	List<PetType> findPetTypes() throws DataAccessException;
 	
-//	@Override
-//	@Modifying
-//	@Query("DELETE FROM Pet p WHERE p.id = ?1")
-//	void delete(int petId);
+
 
 	
 
