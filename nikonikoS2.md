@@ -63,7 +63,7 @@ In the retrospective meeting, the team has a discussion about those results.
 | 18-04-2020    | -              | -              | -              | -              | -              |
 | 19-04-2020    | -              | -              | -              | -              | -              |
 | 20-04-2020    | :smiley:       | :smiley:       | :smiley:       |  :smiley:      |:smiley:        |
-| 21-04-2020    | :neutral_face: |                |                |                |                |
+| 21-04-2020    | :neutral_face: | -              | -              | -              | -              |
 | 22-04-2020    |                |                |                |                |                |
 | 23-04-2020    |                |                |                |                |                |
 | 24-04-2020    |                |                |                |                |                |
