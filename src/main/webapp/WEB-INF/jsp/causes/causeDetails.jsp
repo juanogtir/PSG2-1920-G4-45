@@ -44,7 +44,7 @@
 	</table>
 
 	<table class="table table-striped">
-	<h3>Donaciones</h3>
+	<h3 class="donacionesCauseDetails">Donaciones</h3>
 		<c:forEach var="donation" items="${cause.donations}">
 
 			<tr>
