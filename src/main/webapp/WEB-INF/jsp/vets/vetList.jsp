@@ -13,7 +13,6 @@
 			<tr>
 				<th>Nombre</th>
 				<th>Especialidades</th>
-				<th> Editar Veterinario</th>
 				<th> Eliminar Veterinario</th>
 			</tr>
 		</thead>
@@ -26,13 +25,7 @@
 					<td><c:forEach var="specialty" items="${vet.specialties}">
 							<c:out value="${specialty.name} " />
 						</c:forEach> <c:if test="${vet.nrOfSpecialties == 0}">ninguna</c:if></td>
-				<td>
-					<spring:url value="vets/{vetId}/edit" var="editUrl">
-						<spring:param name="vetId" value="${vet.id}" />
-					</spring:url>
-					<a href="${fn:escapeXml(editUrl)}">Editar</a>
-				</td>
-          		<td>
+          <td>
                 <spring:url value="/vets/delete/{vetId}" var="vetUrl">
         		<spring:param name="vetId" value="${vet.id}"/>
     			</spring:url>
