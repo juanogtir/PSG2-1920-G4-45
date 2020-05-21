@@ -13,6 +13,7 @@
 			<tr>
 				<th>Nombre</th>
 				<th>Especialidades</th>
+				<th> Eliminar Veterinario</th>
 			</tr>
 		</thead>
 		<tbody>
