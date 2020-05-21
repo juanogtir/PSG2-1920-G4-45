@@ -68,6 +68,7 @@
 
 		</c:forEach>
 	</table>
-
+	
+	<a href="/causes/" class="btn btn-default">Volver al listado de causas</a>
 
 </petclinic:layout>
