@@ -25,5 +25,24 @@ public class PetHotel extends BaseEntity {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	LocalDateTime endDate;
 	
+	public String getMinutesEnd() {
+		String s = "";
+		if(endDate.getMinute()<10) {
+			s = "0"+String.valueOf(endDate.getMinute());
+		}else {
+			s = String.valueOf(endDate.getMinute());
+		}
+		return s;
+	}
+	
+	public String getMinutesInit() {
+		String s = "";
+		if(initialDate.getMinute()<10) {
+			s = "0"+String.valueOf(initialDate.getMinute());
+		}else {
+			s = String.valueOf(initialDate.getMinute());
+		}
+		return s;
+	}
 	
 }

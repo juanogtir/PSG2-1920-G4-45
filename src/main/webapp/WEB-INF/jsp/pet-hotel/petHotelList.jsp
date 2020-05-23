@@ -29,12 +29,12 @@
                 <td> 
                     <spring:eval expression="petHotel.initialDate.dayOfMonth"></spring:eval>-<spring:eval expression="petHotel.initialDate.month"></spring:eval>-<spring:eval expression="petHotel.initialDate.year"></spring:eval>
                     <b> </b>     
-                    <spring:eval expression="petHotel.initialDate.Hour"></spring:eval>:<spring:eval expression="petHotel.initialDate.minute"></spring:eval>                  
+                    <spring:eval expression="petHotel.initialDate.Hour"></spring:eval>:<spring:eval expression="petHotel.minutesInit"></spring:eval>                  
                 </td>
                 <td> 
                     <spring:eval expression="petHotel.endDate.dayOfMonth"></spring:eval>-<spring:eval expression="petHotel.endDate.month"></spring:eval>-<spring:eval expression="petHotel.endDate.year"></spring:eval>
                     <b> </b>     
-                    <spring:eval expression="petHotel.endDate.Hour"></spring:eval>:<spring:eval expression="petHotel.endDate.minute"></spring:eval>                  
+                    <spring:eval expression="petHotel.endDate.Hour"></spring:eval>:<spring:eval expression="petHotel.minutesEnd"></spring:eval>                  
                 </td>
 
            		 <td>
