@@ -8,7 +8,7 @@
 
 <petclinic:layout pageName="pet-hotel">
     <h2>
-        Hotel de mascotas
+        Hotel De Mascotas
     </h2><br/>
     <form:form modelAttribute="petHotel" class="form-horizontal" id="add-petHotel-form">
         <div class="form-group has-feedback">
